@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowOldAreYou", "HowOldAreYou\HowOldAreYou.csproj", "{0736B7CD-D7B4-4C86-8905-920112764CB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessTheNumber", "GuessTheNumber\GuessTheNumber.csproj", "{865681CB-ADA2-48CF-895B-6D22E48FD85D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0736B7CD-D7B4-4C86-8905-920112764CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0736B7CD-D7B4-4C86-8905-920112764CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0736B7CD-D7B4-4C86-8905-920112764CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0736B7CD-D7B4-4C86-8905-920112764CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D9E11BD-A052-49D6-AF0C-637BC0FF4186}
+	EndGlobalSection
+EndGlobal
