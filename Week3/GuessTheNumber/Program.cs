@@ -12,27 +12,25 @@ namespace GuessTheNumber
                 var rightValue = random.Next(101);
 
                 Console.WriteLine("Zgadnij liczbę jaką mam na myśli. Możliwa liczba mieści się w przedziale od 0 do 100:");
-                var number = GetValue();
+                
 
-                for (int i = 1; i <= 101; i++)
+                for (int i = 0;; i++)
                 {
-                    if(number < 0)
+                    var number = GetValue();
+                    if (number < 0)
                     {
                         Console.WriteLine("W grę wchodzą wartości powyżej zera!");
                         Console.WriteLine("Próbuj dalej!");
-                        number = GetValue();
                     }
                     else if (number > rightValue)
                     {
                         Console.WriteLine("Prawidłowa liczba jest niższa od podanej.");
                         Console.WriteLine("Próbuj dalej!");
-                        number = GetValue();
                     }
                     else if (number < rightValue)
                     {
                         Console.WriteLine("Prawidłowa liczba jest wyższa od podanej.");
                         Console.WriteLine("Próbuj dalej!");
-                        number = GetValue();
                     }
                     else
                     {
