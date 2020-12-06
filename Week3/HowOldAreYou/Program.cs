@@ -34,9 +34,19 @@ namespace HowOldAreYou
                 var yourBirthday = new DateTime(year, month, day);
                 var today = DateTime.Today;
 
-                var result = CheckYourCurrentlyAge(yourBirthday, today, city);
+                //var result = CheckYourCurrentlyAge(yourBirthday, today, city);
 
+                //Console.WriteLine(result);
+                int age;
+
+                UserAgeInfo userInfo = new UserAgeInfo();
+                age = userInfo.CheckYourCurrentlyAge(yourBirthday, today);
+
+                string result;
+
+                result = userInfo.ShowUserInfo(age, name, city);
                 Console.WriteLine(result);
+                Console.ReadLine();
             }
             catch (Exception ex)
             {
