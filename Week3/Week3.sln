@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowOldAreYou", "HowOldAreYo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuessTheNumber", "GuessTheNumber\GuessTheNumber.csproj", "{865681CB-ADA2-48CF-895B-6D22E48FD85D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvenOrOddNumber", "EvenOrOddNumber\EvenOrOddNumber.csproj", "{16BB285C-5B68-42A2-A790-3F9411F04381}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865681CB-ADA2-48CF-895B-6D22E48FD85D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BB285C-5B68-42A2-A790-3F9411F04381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BB285C-5B68-42A2-A790-3F9411F04381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BB285C-5B68-42A2-A790-3F9411F04381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BB285C-5B68-42A2-A790-3F9411F04381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
