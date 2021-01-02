@@ -25,5 +25,7 @@ namespace HrApp.Properties
                 return defaultInstance;
             }
         }
+
+        public bool IsMaximize { get; internal set; }
     }
 }

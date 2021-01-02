@@ -81,7 +81,10 @@ namespace HrApp
         {
             var employees = _fileHelper.DeserializeFromFile();
 
-            AssignIdToNewEmployee(employees);
+            if (_employeeId != 0)
+                employees.RemoveAll(x => x.Id == _employeeId);
+            else
+                AssignIdToNewEmployee(employees);
 
             AddNewEmployeeToList(employees);
 
@@ -93,6 +96,30 @@ namespace HrApp
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        internal void AddNewEmployeeToList(List<Employee> employees, int employeeID)
+        {
+            var data = employees.Where(x => x.Id == employeeID).ToList();
+            employees.RemoveAll(x => x.Id == employeeID);
+
+            foreach (var row in data)
+            {
+                var employee = new Employee
+                {
+                    Id = employeeID,
+                    FirstName = row.FirstName,
+                    LastName = row.LastName,
+                    DateOfEmployment = row.DateOfEmployment,
+                    DateOfEmployeeDismissal = DateTime.Now,
+                    Earnings = row.Earnings,
+                    Comments = row.Comments
+                };
+
+                employees.Add(employee);
+            }
+            
+            _fileHelper.SerializeToFile(employees);
         }
     }
 }

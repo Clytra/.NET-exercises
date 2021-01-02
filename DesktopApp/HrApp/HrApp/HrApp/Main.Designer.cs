@@ -33,6 +33,8 @@ namespace HrApp
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDismissal = new System.Windows.Forms.Button();
             this.dvgEmployes = new System.Windows.Forms.DataGridView();
+            this.lbFilter = new System.Windows.Forms.Label();
+            this.cbxFilter = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dvgEmployes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,6 +46,7 @@ namespace HrApp
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Dodaj pracownika";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -53,6 +56,7 @@ namespace HrApp
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edytuj dane pracownika";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDismissal
             // 
@@ -62,6 +66,7 @@ namespace HrApp
             this.btnDismissal.TabIndex = 2;
             this.btnDismissal.Text = "Zwolnij pracownika";
             this.btnDismissal.UseVisualStyleBackColor = true;
+            this.btnDismissal.Click += new System.EventHandler(this.btnDismissal_Click);
             // 
             // dvgEmployes
             // 
@@ -74,11 +79,35 @@ namespace HrApp
             this.dvgEmployes.Size = new System.Drawing.Size(1158, 444);
             this.dvgEmployes.TabIndex = 3;
             // 
+            // lbFilter
+            // 
+            this.lbFilter.AutoSize = true;
+            this.lbFilter.Location = new System.Drawing.Point(854, 29);
+            this.lbFilter.Name = "lbFilter";
+            this.lbFilter.Size = new System.Drawing.Size(46, 17);
+            this.lbFilter.TabIndex = 4;
+            this.lbFilter.Text = "Filtruj:";
+            // 
+            // cbxFilter
+            // 
+            this.cbxFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFilter.FormattingEnabled = true;
+            this.cbxFilter.Items.AddRange(new object[] {
+            "Wszyscy",
+            "Zatrudnieni",
+            "Zwolnieni"});
+            this.cbxFilter.Location = new System.Drawing.Point(926, 26);
+            this.cbxFilter.Name = "cbxFilter";
+            this.cbxFilter.Size = new System.Drawing.Size(244, 24);
+            this.cbxFilter.TabIndex = 5;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1182, 525);
+            this.Controls.Add(this.cbxFilter);
+            this.Controls.Add(this.lbFilter);
             this.Controls.Add(this.dvgEmployes);
             this.Controls.Add(this.btnDismissal);
             this.Controls.Add(this.btnEdit);
@@ -87,6 +116,7 @@ namespace HrApp
             this.Text = "Program kadrowy";
             ((System.ComponentModel.ISupportInitialize)(this.dvgEmployes)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -96,6 +126,8 @@ namespace HrApp
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDismissal;
         private System.Windows.Forms.DataGridView dvgEmployes;
+        private System.Windows.Forms.Label lbFilter;
+        private System.Windows.Forms.ComboBox cbxFilter;
     }
 }
 
