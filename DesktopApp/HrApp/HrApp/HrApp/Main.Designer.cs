@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace HrApp
 {
     partial class Main
@@ -29,6 +31,7 @@ namespace HrApp
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDismissal = new System.Windows.Forms.Button();
@@ -70,7 +73,20 @@ namespace HrApp
             // 
             // dvgEmployes
             // 
+            this.dvgEmployes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dvgEmployes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dvgEmployes.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dvgEmployes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dvgEmployes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dvgEmployes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgEmployes.Location = new System.Drawing.Point(12, 69);
             this.dvgEmployes.Name = "dvgEmployes";
@@ -81,6 +97,7 @@ namespace HrApp
             // 
             // lbFilter
             // 
+            this.lbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lbFilter.AutoSize = true;
             this.lbFilter.Location = new System.Drawing.Point(854, 29);
             this.lbFilter.Name = "lbFilter";
@@ -90,6 +107,7 @@ namespace HrApp
             // 
             // cbxFilter
             // 
+            this.cbxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFilter.FormattingEnabled = true;
             this.cbxFilter.Items.AddRange(new object[] {
@@ -100,6 +118,7 @@ namespace HrApp
             this.cbxFilter.Name = "cbxFilter";
             this.cbxFilter.Size = new System.Drawing.Size(244, 24);
             this.cbxFilter.TabIndex = 5;
+            this.cbxFilter.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_SelectedIndexChanged);
             // 
             // Main
             // 
@@ -112,8 +131,11 @@ namespace HrApp
             this.Controls.Add(this.btnDismissal);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Program kadrowy";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dvgEmployes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

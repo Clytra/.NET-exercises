@@ -55,17 +55,26 @@ namespace HrApp
 
         private void AddNewEmployeeToList(List<Employee> employees)
         {
-            var employee = new Employee
+            try
             {
-                Id = _employeeId,
-                FirstName = tbFirstName.Text,
-                LastName = tbLastName.Text,
-                DateOfEmployment = DateTime.Parse(tbDateOfEmployment.Text),
-                Earnings = Double.Parse(tbEarnings.Text),
-                Comments = rtbComments.Text
-            };
+                var employee = new Employee
+                {
+                    Id = _employeeId,
+                    FirstName = tbFirstName.Text,
+                    LastName = tbLastName.Text,
+                    DateOfEmployment = DateTime.Parse(tbDateOfEmployment.Text),
+                    DateOfEmployeeDismissal = null,
+                    Earnings = Double.Parse(tbEarnings.Text),
+                    Comments = rtbComments.Text
+                };
 
-            employees.Add(employee);
+                employees.Add(employee);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message,"Informacja o błędzie");
+            }
         }
         
         private void AssignIdToNewEmployee(List<Employee> employees)

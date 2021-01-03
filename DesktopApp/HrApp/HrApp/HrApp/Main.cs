@@ -47,7 +47,7 @@ namespace HrApp
             {
                 var filter = cbxFilter.SelectedItem.ToString();
                 
-                if (cbxFilter.SelectedItem == "Zatrudnieni")
+                if (filter == "Zatrudnieni")
                 {
                     employees = employees.Where(employee => employee.DateOfEmployeeDismissal == null).ToList();
                 }
@@ -134,6 +134,11 @@ namespace HrApp
                 IsMaximize = false;
 
             Settings.Default.Save();
+        }
+
+        private void cbxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
