@@ -19,18 +19,15 @@ namespace GuessTheNumber
                     var number = GetValue();
                     if (number < 0)
                     {
-                        Console.WriteLine("W grę wchodzą wartości powyżej zera!");
-                        Console.WriteLine("Próbuj dalej!");
+                        Console.WriteLine("W grę wchodzą wartości powyżej zera!\nPróbuj dalej!");
                     }
                     else if (number > rightValue)
                     {
-                        Console.WriteLine("Prawidłowa liczba jest niższa od podanej.");
-                        Console.WriteLine("Próbuj dalej!");
+                        Console.WriteLine("Prawidłowa liczba jest niższa od podanej.\nPróbuj dalej!");
                     }
                     else if (number < rightValue)
                     {
-                        Console.WriteLine("Prawidłowa liczba jest wyższa od podanej.");
-                        Console.WriteLine("Próbuj dalej!");
+                        Console.WriteLine("Prawidłowa liczba jest wyższa od podanej.\nPróbuj dalej!");
                     }
                     else
                     {
