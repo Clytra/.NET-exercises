@@ -6,17 +6,21 @@ namespace FizzBuzzGame
     {
         public void CheckNumber(int value)
         {
+            var fizzBuzz = "FizzBuzz";
+            var fizz = "Fizz";
+            var buzz = "Buzz";
+
             if (value % 3 == 0 && value % 5 == 0)
             {
-                Console.WriteLine("FizzBuzz");
+                Console.WriteLine(fizzBuzz);
             }
             else if (value % 3 == 0)
             {
-                Console.WriteLine("Fizz");
+                Console.WriteLine(fizz);
             }
             else if (value % 5 == 0)
             {
-                Console.WriteLine("Buzz");
+                Console.WriteLine(buzz);
             }
             else
             {
