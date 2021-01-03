@@ -14,17 +14,18 @@ namespace EvenOrOddNumber
                 if (number % 2 == 0)
                 {
                     Console.WriteLine("Podana liczba jest liczbą parzystą.");
-                    Console.ReadLine();
                 }
                 else
                 {
                     Console.WriteLine("Podana liczba jest liczbą nieparzystą.");
-                    Console.ReadLine();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
                 Console.ReadLine();
             }
         }
