@@ -53,6 +53,7 @@ namespace PictureApp
             this.btnDelete.TabIndex = 1;
             this.btnDelete.Text = "Usuń zdjęcie";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // pbxImage
             // 
@@ -77,6 +78,7 @@ namespace PictureApp
             this.Name = "PictureApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PictureApp";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PictureApp_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.ResumeLayout(false);
 
