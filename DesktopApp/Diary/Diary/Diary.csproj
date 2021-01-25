@@ -76,6 +76,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Commands\AsyncRelayCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddEditStudentView.xaml.cs">
       <DependentUpon>AddEditStudentView.xaml</DependentUpon>
     </Compile>
@@ -115,9 +122,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
