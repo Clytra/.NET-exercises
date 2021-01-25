@@ -11,12 +11,13 @@ using System.Windows.Input;
 
 namespace Diary.ViewModels
 {
-    class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
 
         public MainViewModel()
         {
+
             AddStudentCommand = new RelayCommand(AddEditStudent);
             EditStudentCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
             DeleteStudentCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
@@ -132,6 +133,5 @@ namespace Diary.ViewModels
         public ICommand EditStudentCommand { get; set; }
         public ICommand DeleteStudentCommand { get; set; }
         public ICommand RefreshStudentsCommand { get; set; }
-        public ICommand SettingsCommand { get; set; }
     }
 }

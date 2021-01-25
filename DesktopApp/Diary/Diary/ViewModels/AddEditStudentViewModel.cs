@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Diary.ViewModels
 {
-    class AddEditStudentViewModel : ViewModelBase
+    public class AddEditStudentViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
         public AddEditStudentViewModel(StudentWrapper student = null)
