@@ -1,8 +1,6 @@
 using Diary.Models.Configurations;
 using Diary.Models.Domains;
-using System;
 using System.Data.Entity;
-using System.Linq;
 
 namespace Diary
 {
