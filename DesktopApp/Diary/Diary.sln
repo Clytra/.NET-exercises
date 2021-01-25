@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diary", "Diary\Diary.csproj", "{2183CEE4-3002-47AF-9B8B-BEB80B42236E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diary", "Diary\Diary.csproj", "{EE7BFBC3-A57B-4186-A689-BDA6ADC0CEC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2183CEE4-3002-47AF-9B8B-BEB80B42236E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2183CEE4-3002-47AF-9B8B-BEB80B42236E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2183CEE4-3002-47AF-9B8B-BEB80B42236E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2183CEE4-3002-47AF-9B8B-BEB80B42236E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE7BFBC3-A57B-4186-A689-BDA6ADC0CEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE7BFBC3-A57B-4186-A689-BDA6ADC0CEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE7BFBC3-A57B-4186-A689-BDA6ADC0CEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE7BFBC3-A57B-4186-A689-BDA6ADC0CEC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E6834003-DF43-4AF5-91A7-CB519C5DE390}
+		SolutionGuid = {8BBA012D-09E1-4F14-8979-095EED6D6359}
 	EndGlobalSection
 EndGlobal
