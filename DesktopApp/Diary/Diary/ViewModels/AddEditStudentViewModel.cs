@@ -1,5 +1,6 @@
 ﻿using Diary.Commands;
 using Diary.Models;
+using Diary.Models.Wrappers;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -8,14 +9,14 @@ namespace Diary.ViewModels
 {
     public class AddEditStudentViewModel : ViewModelBase
     {
-        public AddEditStudentViewModel(Student student = null)
+        public AddEditStudentViewModel(StudentWrapper student = null)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
 
             if (student == null)
             {
-                Student = new Student();
+                Student = new StudentWrapper();
             }
             else
             {
@@ -26,8 +27,8 @@ namespace Diary.ViewModels
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
 
-        private Student _student;
-        public Student Student
+        private StudentWrapper _student;
+        public StudentWrapper Student
         {
             get { return _student; }
             set
