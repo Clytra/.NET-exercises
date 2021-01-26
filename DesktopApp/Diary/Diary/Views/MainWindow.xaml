@@ -7,7 +7,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Dziennik Ucznia" Height="450" Width="800">
+        Title="Dziennik Ucznia" Height="450" Width="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -26,6 +26,23 @@
             Margin="5" 
             ItemsSource="{Binding Students}"
             SelectedItem="{Binding SelectedStudent}"
-            />
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            SelectionMode="Single"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko"/>
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi"/>
+                <DataGridTextColumn Binding="{Binding Math}" Header="Matematyka"/>
+                <DataGridTextColumn Binding="{Binding Technology}" Header="Technologia"/>
+                <DataGridTextColumn Binding="{Binding Physics}" Header="Fizyka"/>
+                <DataGridTextColumn Binding="{Binding PolishLang}" Header="Język polski"/>
+                <DataGridTextColumn Binding="{Binding ForeignLang}" Header="Język obcy"/>
+                <DataGridCheckBoxColumn Binding="{Binding Activities}" Header="Zajęcia dodatkowe"/>
+                <DataGridTextColumn Binding="{Binding Group.Name}" Header="Grupa"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid> 
 </mah:MetroWindow>
