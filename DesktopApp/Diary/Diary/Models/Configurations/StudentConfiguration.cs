@@ -14,6 +14,10 @@ namespace Diary.Models.Configurations
             Property(x => x.FirstName)
                 .HasMaxLength(100)
                 .IsRequired();
+
+            Property(x => x.LastName)
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }
