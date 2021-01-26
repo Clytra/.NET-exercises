@@ -38,6 +38,8 @@ namespace Diary.ViewModels
                     Group = new Group { Id = 3}
                 },
             };
+
+            InitGroups();
         }
 
         public ICommand RefreshStudentsCommand { get; set; }
@@ -53,6 +55,7 @@ namespace Diary.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private Student _selectedStudent;
 
         public Student SelectedStudent
@@ -61,6 +64,30 @@ namespace Diary.ViewModels
             set 
             { 
                 _selectedStudent = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Group> _groups;
+
+        public ObservableCollection<Group> Groups
+        {
+            get { return _groups; }
+            set
+            {
+                _groups = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _selectedGroupId;
+
+        public int SelectedGroupId
+        {
+            get { return _selectedGroupId; }
+            set
+            {
+                _selectedGroupId = value;
                 OnPropertyChanged();
             }
         }
@@ -74,6 +101,18 @@ namespace Diary.ViewModels
         private void RefreshStudents(object obj)
         {
             MessageBox.Show("RefreshStudent");
+        }
+
+        private void InitGroups()
+        {
+            Groups = new ObservableCollection<Group>
+            {
+                new Group {Id = 0, Name = "Wszystkie"},
+                new Group {Id = 1, Name = "1A"},
+                new Group {Id = 2, Name = "2A"}
+            };
+
+            SelectedGroupId = 0;
         }
     }
 }
