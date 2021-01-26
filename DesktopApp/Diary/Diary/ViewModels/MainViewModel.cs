@@ -1,5 +1,8 @@
 ﻿using Diary.Commands;
 using Diary.Models;
+using Diary.Views;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,34 +18,20 @@ namespace Diary.ViewModels
     {
         public MainViewModel()
         {
-            RefreshStudentsCommand = new RelayCommand(RefreshStudents, CanRefreshStudents);
+            RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+            AddStudentsCommand = new RelayCommand(AddEditStudent);
+            EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
+            DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
 
-            Students = new ObservableCollection<Student>
-            {
-                new Student
-                {
-                    FirstName ="Janusz",
-                    LastName="Januszowy",
-                    Group = new Group { Id = 1}
-                },
-                new Student
-                {
-                    FirstName ="Marek",
-                    LastName="Januszowy",
-                    Group = new Group { Id = 2}
-                },
-                new Student
-                {
-                    FirstName ="Grażyna",
-                    LastName="Januszowa",
-                    Group = new Group { Id = 3}
-                },
-            };
-
+            RefreshDiary();
             InitGroups();
         }
 
         public ICommand RefreshStudentsCommand { get; set; }
+        public ICommand AddStudentsCommand { get; set; }
+        public ICommand EditStudentsCommand { get; set; }
+        public ICommand DeleteStudentsCommand { get; set; }
+
 
         private ObservableCollection<Student> _students;
 
@@ -92,15 +81,9 @@ namespace Diary.ViewModels
             }
         }
 
-
-        private bool CanRefreshStudents(object obj)
-        {
-            return true;
-        }
-
         private void RefreshStudents(object obj)
         {
-            MessageBox.Show("RefreshStudent");
+            RefreshDiary();
         }
 
         private void InitGroups()
@@ -113,6 +96,62 @@ namespace Diary.ViewModels
             };
 
             SelectedGroupId = 0;
+        }
+
+        private bool CanEditDeleteStudent(object obj)
+        {
+            return SelectedStudent != null;
+        }
+
+        private async Task DeleteStudent(object obj)
+        {
+            var metroWindow = Application.Current.MainWindow as MetroWindow;
+            var dialog = await metroWindow.ShowMessageAsync("Usuwanie ucznia", 
+                $"Czy na pewno chcesz" +
+                $"usunąć ucznia {SelectedStudent.FirstName} {SelectedStudent.LastName}?",
+                MessageDialogStyle.AffirmativeAndNegative);
+
+            if (dialog != MessageDialogResult.Affirmative)
+                return;
+
+            //Usuwanie ucznia z bazy
+        }
+
+        private void AddEditStudent(object obj)
+        {
+            var addEditStudentWindow = new AddEditStudentView(obj as Student);
+            addEditStudentWindow.Closed += AddEditStudentWindow_Closed;
+            addEditStudentWindow.ShowDialog();
+        }
+
+        private void AddEditStudentWindow_Closed(object sender, EventArgs e)
+        {
+            RefreshDiary();
+        }
+
+        private void RefreshDiary()
+        {
+            Students = new ObservableCollection<Student>
+            {
+                new Student
+                {
+                    FirstName ="Janusz",
+                    LastName="Januszowy",
+                    Group = new Group { Id = 1}
+                },
+                new Student
+                {
+                    FirstName ="Marek",
+                    LastName="Januszowy",
+                    Group = new Group { Id = 2}
+                },
+                new Student
+                {
+                    FirstName ="Grażyna",
+                    LastName="Januszowa",
+                    Group = new Group { Id = 3}
+                },
+            };
         }
     }
 }
