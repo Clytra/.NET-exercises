@@ -1,5 +1,5 @@
 ﻿using Diary.Commands;
-using Diary.Models.Domains;
+using Diary.Models.Wrappers;
 using System;
 using System.Windows.Input;
 
@@ -7,7 +7,7 @@ namespace Diary.ViewModels
 {
     public class ConnectToServerUserSettingsViewModel : ViewModelBase
     {
-        public ConnectToServerUserSettingsViewModel(Server server = null)
+        public ConnectToServerUserSettingsViewModel(ServerWrapper server = null)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
@@ -17,8 +17,8 @@ namespace Diary.ViewModels
         public ICommand ConfirmCommand { get; set; }
 
 
-        private Server _server;
-        public Server Server
+        private ServerWrapper _server;
+        public ServerWrapper Server
         {
             get { return _server; }
             set
@@ -30,12 +30,12 @@ namespace Diary.ViewModels
 
         private void Confirm(object obj)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void Close(object obj)
         {
-            throw new NotImplementedException();
+           
         }
     }
 }

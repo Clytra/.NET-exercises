@@ -116,9 +116,9 @@
     <Compile Include="Models\Converters\StudentConverter.cs" />
     <Compile Include="Models\Domains\Group.cs" />
     <Compile Include="Models\Domains\Rating.cs" />
-    <Compile Include="Models\Domains\Server.cs" />
     <Compile Include="Models\Domains\Student.cs" />
     <Compile Include="Models\Wrappers\GroupWrapper.cs" />
+    <Compile Include="Models\Wrappers\ServerWrapper.cs" />
     <Compile Include="Models\Wrappers\StudentWrapper.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Repository.cs" />

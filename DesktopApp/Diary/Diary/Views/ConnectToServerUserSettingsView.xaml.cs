@@ -1,4 +1,4 @@
-﻿using Diary.Models.Domains;
+﻿using Diary.Models.Wrappers;
 using Diary.ViewModels;
 using MahApps.Metro.Controls;
 
@@ -9,7 +9,7 @@ namespace Diary.Views
     /// </summary>
     public partial class ConnectToServerUserSettingsView : MetroWindow
     {
-        public ConnectToServerUserSettingsView(Server server = null)
+        public ConnectToServerUserSettingsView(ServerWrapper server = null)
         {
             InitializeComponent();
             DataContext = new ConnectToServerUserSettingsViewModel(server);
