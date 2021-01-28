@@ -15,6 +15,7 @@ namespace Diary.ViewModels
 
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
+        public bool isConnectedToDb { get; set; }
 
 
         private ServerWrapper _server;
@@ -30,12 +31,24 @@ namespace Diary.ViewModels
 
         private void Confirm(object obj)
         {
-            
+            if (Server.IsValid)
+                try
+                {
+                    isConnectedToDb = Connect();
+                }
+                catch (Exception ex)
+                {
+                    _ = ex.Message;
+                }
         }
 
         private void Close(object obj)
         {
            
+        }
+        private bool Connect()
+        {
+            throw new NotImplementedException();
         }
     }
 }

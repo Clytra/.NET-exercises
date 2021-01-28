@@ -5,6 +5,10 @@ using System.Linq;
 using System.Data.Entity;
 using Diary.Models.Converters;
 using Diary.Models;
+using System;
+using Diary.Properties;
+using System.Data.SqlClient;
+using System.Windows;
 
 namespace Diary
 {
@@ -142,6 +146,50 @@ namespace Diary
                 });
 
                 context.SaveChanges();
+            }
+        }
+
+        public int ConnectToDb()
+        {
+            ServerWrapper settings = new ServerWrapper
+            {
+                ServerAddress = Settings.Default.ServerAddress,
+                ServerName = Settings.Default.ServerName,
+                DbName = Settings.Default.DbName,
+                UserName = Settings.Default.UserName,
+                Password = Settings.Default.Password
+            };
+
+            if (settings.IsValid)
+            {
+                try
+                {
+                    SqlConnection thisConnection = new SqlConnection
+                        ($@"Server=({settings.ServerAddress})\{settings.ServerName};Database={settings.DbName};User Id={settings.UserName};Password={settings.Password};App=EntityFramework");
+                    thisConnection.Open();
+                    return 1;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            else
+            {
+                var window = MessageBox
+                    .Show("Nie ustanowiono połączenia z bazą danych. Czy chcesz nawiązań nowe połączenie?", 
+                    "Brak połączenia", 
+                    MessageBoxButton.YesNo);
+
+                if (window.Equals("No"))
+                {
+                    return (int)ConnectionStatus.CONNECTION_CANCELLED_BY_USER;
+                }
+                else
+                {
+                    return (int)ConnectionStatus.USER_ATTEMPTING_TO_CONNECT;
+                }
             }
         }
     }

@@ -1,8 +1,6 @@
 ﻿using Diary.Commands;
-using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
-using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;

@@ -1,4 +1,5 @@
 ﻿using Diary.Commands;
+using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
 using Diary.Views;
@@ -29,6 +30,7 @@ namespace Diary.ViewModels
             DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
             SettingsCommand = new RelayCommand(SetServerConnection);
 
+            CheckConnection();
             RefreshDiary();
             InitGroups();
         }
@@ -38,6 +40,7 @@ namespace Diary.ViewModels
         public ICommand EditStudentsCommand { get; set; }
         public ICommand DeleteStudentsCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
+        public int connectionStatus { get; set; }
 
         private ObservableCollection<StudentWrapper> _students;
 
@@ -71,6 +74,18 @@ namespace Diary.ViewModels
             set
             {
                 _groups = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ServerWrapper _currentSettings;
+
+        public ServerWrapper CurrentSettings
+        {
+            get { return _currentSettings; }
+            set
+            {
+                _currentSettings = value;
                 OnPropertyChanged();
             }
         }
@@ -141,7 +156,7 @@ namespace Diary.ViewModels
 
         private void SetServerConnection(object obj)
         {
-            var connectToServerUserSettingsWindow = new ConnectToServerUserSettingsView(obj as Server);
+            var connectToServerUserSettingsWindow = new ConnectToServerUserSettingsView(obj as ServerWrapper);
             connectToServerUserSettingsWindow.Closed += connectToServerUserSettingsWindow_Closed;
             connectToServerUserSettingsWindow.ShowDialog();
         }
@@ -149,6 +164,22 @@ namespace Diary.ViewModels
         private void connectToServerUserSettingsWindow_Closed(object sender, EventArgs e)
         {
             RefreshDiary();
+        }
+        private void CheckConnection()
+        {
+            connectionStatus = _repository.ConnectToDb();
+
+            switch (connectionStatus)
+            {
+                case 3:
+                    ServerWrapper server = new ServerWrapper();
+                    SetServerConnection(server);
+                    break;
+                case 4:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
