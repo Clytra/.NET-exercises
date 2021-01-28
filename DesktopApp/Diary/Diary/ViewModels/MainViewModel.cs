@@ -117,7 +117,7 @@ namespace Diary.ViewModels
             if (dialog != MessageDialogResult.Affirmative)
                 return;
 
-            //Usuwanie ucznia z bazy
+            _repository.DeleteStudent(SelectedStudent.Id);
         }
 
         private void AddEditStudent(object obj)

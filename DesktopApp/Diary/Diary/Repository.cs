@@ -36,5 +36,15 @@ namespace Diary
                 return students.ToList().Select(x => x.ToWrapper()).ToList();
             }
         }
+
+        public void DeleteStudent(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var studentToDelete = context.Students.Find(id);
+                context.Students.Remove(studentToDelete);
+                context.SaveChanges();
+            }
+        }
     }
 }
