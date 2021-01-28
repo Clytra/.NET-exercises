@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ConnectToServerUserSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,12 +116,14 @@
     <Compile Include="Models\Converters\StudentConverter.cs" />
     <Compile Include="Models\Domains\Group.cs" />
     <Compile Include="Models\Domains\Rating.cs" />
+    <Compile Include="Models\Domains\Server.cs" />
     <Compile Include="Models\Domains\Student.cs" />
     <Compile Include="Models\Wrappers\GroupWrapper.cs" />
     <Compile Include="Models\Wrappers\StudentWrapper.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditStudentViewModel.cs" />
+    <Compile Include="ViewModels\ConnectToServerUserSettingsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddEditStudentView.xaml.cs">
@@ -126,6 +132,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ConnectToServerUserSettingsView.xaml.cs">
+      <DependentUpon>ConnectToServerUserSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
