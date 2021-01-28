@@ -69,6 +69,18 @@ namespace Diary.ViewModels
             }
         }
 
+        private int _selectedGroupId;
+
+        public int SelectedGroupId
+        {
+            get { return _selectedGroupId; }
+            set
+            {
+                _selectedGroupId = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void Confirm(object obj)
         {
             if (!IsUpdate)
@@ -107,7 +119,7 @@ namespace Diary.ViewModels
 
             Groups = new ObservableCollection<Group>(groups);
 
-            Student.Group.Id = 0;
+            SelectedGroupId = Student.Group.Id;
         }
     }
 }
