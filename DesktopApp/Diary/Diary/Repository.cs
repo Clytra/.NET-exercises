@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Diary.Models.Converters;
+using Diary.Models;
 
 namespace Diary
 {
@@ -47,9 +48,85 @@ namespace Diary
             }
         }
 
-        public void UpdateStudent(StudentWrapper student)
+        public void UpdateStudent(StudentWrapper studentWrapper)
         {
-            throw new NotImplementedException();
+            var student = studentWrapper.ToDao();
+            var ratings = studentWrapper.ToRatingDao();
+
+            using (var context = new ApplicationDbContext())
+            {
+                UpdateStudentProperties(context, student);
+
+                var studentsRatings = GetStudentsRatings(context, student);
+
+                UpdateRate(student, ratings, context, studentsRatings, 
+                    Subject.Math);
+                UpdateRate(student, ratings, context, studentsRatings, 
+                    Subject.ForeignLang);
+                UpdateRate(student, ratings, context, studentsRatings, 
+                    Subject.Physics);
+                UpdateRate(student, ratings, context, studentsRatings, 
+                    Subject.PolishLang);
+                UpdateRate(student, ratings, context, studentsRatings, 
+                    Subject.Technology);
+
+                context.SaveChanges();
+            }
+        }
+
+        private void UpdateStudentProperties(ApplicationDbContext context, Student student)
+        {
+            var studentToUpdate = context.Students.Find(student.Id);
+            studentToUpdate.Activities = student.Activities;
+            studentToUpdate.Comments = student.Comments;
+            studentToUpdate.FirstName = student.FirstName;
+            studentToUpdate.LastName = student.LastName;
+            studentToUpdate.GroupId = student.GroupId;
+        }
+
+        private static List<Rating> GetStudentsRatings(ApplicationDbContext context, Student student)
+        {
+            return context.Ratings
+                    .Where(x => x.StudentId == student.Id)
+                    .ToList();
+        }
+
+        private static void UpdateRate(Student student, List<Rating> newRatings,
+            ApplicationDbContext context, List<Rating> studentsRatings, Subject subject) 
+        {
+            var subRatings = studentsRatings
+                    .Where(x => x.SubjectId == (int)subject)
+                    .Select(x => x.Rate);
+
+            var newSubRatings = newRatings
+                .Where(x => x.SubjectId == (int)subject)
+                .Select(x => x.Rate);
+
+            var subRatingsToDelete = subRatings.Except(newSubRatings).ToList();
+            var subRatingsToAdd = newSubRatings.Except(subRatings).ToList();
+
+            subRatingsToDelete.ForEach(x =>
+            {
+                var ratingsToDelete = context
+                .Ratings
+                .First(
+                    y => y.Rate == x &&
+                    y.StudentId == student.Id &&
+                    y.SubjectId == (int)subject);
+
+                context.Ratings.Remove(ratingsToDelete);
+            });
+
+            subRatingsToAdd.ForEach(x =>
+            {
+                var ratingToAdd = new Rating
+                {
+                    Rate = x,
+                    StudentId = student.Id,
+                    SubjectId = (int)subject
+                };
+                context.Ratings.Add(ratingToAdd);
+            });
         }
 
         public void AddStudent(StudentWrapper studentWrapper)
