@@ -135,26 +135,7 @@ namespace Diary.ViewModels
         private void RefreshDiary()
         {
             Students = new ObservableCollection<StudentWrapper>
-            {
-                new StudentWrapper
-                {
-                    FirstName ="Janusz",
-                    LastName="Januszowy",
-                    Group = new GroupWrapper { Id = 1}
-                },
-                new StudentWrapper
-                {
-                    FirstName ="Marek",
-                    LastName="Januszowy",
-                    Group = new GroupWrapper { Id = 2}
-                },
-                new StudentWrapper
-                {
-                    FirstName ="Grażyna",
-                    LastName="Januszowa",
-                    Group = new GroupWrapper { Id = 3}
-                },
-            };
+                (_repository.GetStudents(SelectedGroupId));
         }
     }
 }
