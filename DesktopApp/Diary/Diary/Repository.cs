@@ -46,5 +46,29 @@ namespace Diary
                 context.SaveChanges();
             }
         }
+
+        public void UpdateStudent(StudentWrapper student)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddStudent(StudentWrapper studentWrapper)
+        {
+            var student = studentWrapper.ToDao();
+            var ratings = studentWrapper.ToRatingDao();
+
+            using (var context = new ApplicationDbContext())
+            {
+                var dbStudent = context.Students.Add(student);
+
+                ratings.ForEach(x =>
+                {
+                    x.StudentId = dbStudent.Id;
+                    context.Ratings.Add(x);
+                });
+
+                context.SaveChanges();
+            }
+        }
     }
 }
