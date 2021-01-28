@@ -24,21 +24,25 @@ namespace Diary.Models.Converters
                     Id = model.Group.Id, 
                     Name = model.Group.Name
                 },
-                Math = string.Join(", ", model.Ratings
-                .Where(x => x.StudentId == (int)Subject.Math)
-                .Select(x => x.Rate)),
-                Physics = string.Join(", ", model.Ratings
-                .Where(x => x.StudentId == (int)Subject.Physics)
-                .Select(x => x.Rate)),
-                Technology = string.Join(", ", model.Ratings
-                .Where(x => x.StudentId == (int)Subject.Technology)
-                .Select(x => x.Rate)),
-                PolishLang = string.Join(", ", model.Ratings
-                .Where(x => x.StudentId == (int)Subject.PolishLang)
-                .Select(x => x.Rate)),
-                ForeignLang = string.Join(", ", model.Ratings
-                .Where(x => x.StudentId == (int)Subject.ForeignLang)
-                .Select(x => x.Rate))
+                Math = string.Join(",", model.Ratings
+                .Where(y => y.SubjectId == (int)Subject.Math)
+                .Select(y => y.Rate)),
+
+                Technology = string.Join(",", model.Ratings
+                .Where(y => y.SubjectId == (int)Subject.Technology)
+                .Select(y => y.Rate)),
+
+                Physics = string.Join(",", model.Ratings
+                .Where(y => y.SubjectId == (int)Subject.Physics)
+                .Select(y => y.Rate)),
+
+                PolishLang = string.Join(",", model.Ratings
+                .Where(y => y.SubjectId == (int)Subject.PolishLang)
+                .Select(y => y.Rate)),
+
+                ForeignLang = string.Join(",", model.Ratings
+                .Where(y => y.SubjectId == (int)Subject.ForeignLang)
+                .Select(y => y.Rate)),
             };
         }
 
