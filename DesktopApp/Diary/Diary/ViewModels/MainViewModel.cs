@@ -2,6 +2,7 @@
 using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
+using Diary.Properties;
 using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -167,7 +168,16 @@ namespace Diary.ViewModels
         }
         private void CheckConnection()
         {
-            connectionStatus = _repository.ConnectToDb();
+            ServerWrapper model = new ServerWrapper
+            {
+                ServerAddress = Settings.Default.ServerAddress,
+                ServerName = Settings.Default.ServerName,
+                DbName = Settings.Default.DbName,
+                UserName = Settings.Default.UserName,
+                Password = Settings.Default.Password
+            };
+
+            connectionStatus = _repository.ConnectToDb(model);
 
             switch (connectionStatus)
             {

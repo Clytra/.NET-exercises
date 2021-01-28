@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:Diary.Views"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
+        Name="ConnectToServerUserSettingsWindow"
         Title="Ustawienia Serwera" Height="250" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -23,23 +24,39 @@
         </Grid.ColumnDefinitions>
 
         <Label Content="Adres Serwera:" Margin="5"/>
-        <TextBox Text="{Binding ServerAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Server.ServerAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Margin="5"/>
 
         <Label Content="Nazwa Serwera:" Margin="5" Grid.Row="1"/>
-        <TextBox Text="{Binding ServerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="1" Margin="5"/>
+        <TextBox Text="{Binding Server.ServerName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="1" Margin="5"/>
 
         <Label Content="Nazwa Bazy Danych:" Margin="5" Grid.Row="2"/>
-        <TextBox Text="{Binding DbName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="2" Margin="5"/>
+        <TextBox Text="{Binding Server.DbName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="2" Margin="5"/>
 
         <Label Content="Nazwa Użytkownika:" Margin="5" Grid.Row="3"/>
-        <TextBox Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3" Margin="5"/>
+        <TextBox Text="{Binding Server.UserName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3" Margin="5"/>
 
         <Label Content="Hasło:" Margin="5" Grid.Row="4"/>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="4" Margin="5"/>
+        <TextBox Text="{Binding Server.Password, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="4" Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
-            <Button Content="Anuluj" Height="25" Width="100" Margin="5"/>
-            <Button Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+            <Button 
+                Command="{Binding CloseCommand}" 
+                CommandParameter="{Binding ElementName=ConnectToServerUserSettingsWindow}" 
+                Content="Anuluj" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                />
+            
+            <Button 
+                Command="{Binding ConfirmCommand}" 
+                CommandParameter="{Binding ElementName=ConnectToServerUserSettingsWindow}" 
+                Content="Zatwierdź" 
+                Height="25" 
+                Width="100" 
+                Margin="5"
+                />
+            
         </StackPanel>
     </Grid>
 </mah:MetroWindow>

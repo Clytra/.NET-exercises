@@ -149,17 +149,8 @@ namespace Diary
             }
         }
 
-        public int ConnectToDb()
+        public int ConnectToDb(ServerWrapper settings)
         {
-            ServerWrapper settings = new ServerWrapper
-            {
-                ServerAddress = Settings.Default.ServerAddress,
-                ServerName = Settings.Default.ServerName,
-                DbName = Settings.Default.DbName,
-                UserName = Settings.Default.UserName,
-                Password = Settings.Default.Password
-            };
-
             if (settings.IsValid)
             {
                 try

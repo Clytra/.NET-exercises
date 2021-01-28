@@ -7,15 +7,25 @@ namespace Diary.ViewModels
 {
     public class ConnectToServerUserSettingsViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public ConnectToServerUserSettingsViewModel(ServerWrapper server = null)
         {
             CloseCommand = new RelayCommand(Close);
             ConfirmCommand = new RelayCommand(Confirm);
+
+            if (server == null)
+            {
+                Server = new ServerWrapper();
+            }
+            else
+            {
+                Server = server;
+            }
         }
 
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
-        public bool isConnectedToDb { get; set; }
+        public int connectionStatus { get; set; }
 
 
         private ServerWrapper _server;
@@ -32,14 +42,16 @@ namespace Diary.ViewModels
         private void Confirm(object obj)
         {
             if (Server.IsValid)
+            {
                 try
                 {
-                    isConnectedToDb = Connect();
+                    connectionStatus = _repository.ConnectToDb(this.Server);
                 }
                 catch (Exception ex)
                 {
                     _ = ex.Message;
                 }
+            }
         }
 
         private void Close(object obj)
