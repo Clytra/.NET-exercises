@@ -113,6 +113,7 @@
     <Compile Include="Models\Configurations\GroupConfiguration.cs" />
     <Compile Include="Models\Configurations\RatingConfiguration.cs" />
     <Compile Include="Models\Configurations\StudentConfiguration.cs" />
+    <Compile Include="Models\ConnectionStatus.cs" />
     <Compile Include="Models\Converters\StudentConverter.cs" />
     <Compile Include="Models\Domains\Group.cs" />
     <Compile Include="Models\Domains\Rating.cs" />
