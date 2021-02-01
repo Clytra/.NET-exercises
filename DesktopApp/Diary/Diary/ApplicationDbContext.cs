@@ -1,13 +1,14 @@
 using Diary.Models.Configurations;
 using Diary.Models.Domains;
+using Diary.Models.Wrappers;
 using System.Data.Entity;
 
 namespace Diary
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(string connectionString)
-            : base(connectionString)
+        public ApplicationDbContext()
+            : base(ServerWrapper.GetConnectionString())
         {
         }
 
