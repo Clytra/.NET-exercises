@@ -5,6 +5,7 @@ using Diary.Properties;
 using Diary.Views;
 using System;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -40,9 +41,15 @@ namespace Diary.ViewModels
             IsConnected = CheckConnection();
             if (IsConnected)
             {
+                var result = MessageBox
+                    .Show("Udało się nawiązać połączenie." +
+                    " Aplikacja zostanie uruchomiona ponownie.",
+                    "Sukces",
+                    MessageBoxButton.OK);
+
                 SaveSettings();
-                
-                CloseWindow(obj as Window);
+                Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
             }
             else
             {
