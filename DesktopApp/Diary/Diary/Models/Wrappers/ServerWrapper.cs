@@ -1,105 +1,69 @@
-﻿using System.ComponentModel;
+﻿using Diary.Properties;
+using System.ComponentModel;
 
 namespace Diary.Models.Wrappers 
 {
-    public class ServerWrapper : IDataErrorInfo
+    public static class ServerWrapper 
     {
-        public string ServerAddress { get; set; }
-
-        public string ServerName { get; set; }
-        public string DbName { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-
-
-        private bool _isServerAddressValid;
-        private bool _isServerNameValid;
-        private bool _isDbNameValid;
-        private bool _isUserNameValid;
-        private bool _isPasswordValid;
-
-        public string this[string columnName]
+        public static string ServerAddress
         {
             get
             {
-                switch (columnName)
-                {
-                    case nameof(ServerAddress):
-                        if (string.IsNullOrWhiteSpace(ServerAddress))
-                        {
-                            Error = "Pole Adres Serwera jest wymagane.";
-                            _isServerAddressValid = false;
-                        }
-                        else
-                        {
-                            Error = string.Empty;
-                            _isServerAddressValid = true;
-                        }
-                        break;
-                    case nameof(ServerName):
-                        if (string.IsNullOrWhiteSpace(ServerName))
-                        {
-                            Error = "Pole Nazwa Serwera jest wymagane.";
-                            _isServerNameValid = false;
-                        }
-                        else
-                        {
-                            Error = string.Empty;
-                            _isServerNameValid = true;
-                        }
-                        break;
-                    case nameof(DbName):
-                        if (string.IsNullOrWhiteSpace(DbName))
-                        {
-                            Error = "Pole Nazwa Bazy Danych jest wymagane.";
-                            _isDbNameValid = false;
-                        }
-                        else
-                        {
-                            Error = string.Empty;
-                            _isDbNameValid = true;
-                        }
-                        break;
-                    case nameof(UserName):
-                        if (string.IsNullOrWhiteSpace(UserName))
-                        {
-                            Error = "Pole Nazwa Użytkownika jest wymagane.";
-                            _isUserNameValid = false;
-                        }
-                        else
-                        {
-                            Error = string.Empty;
-                            _isUserNameValid = true;
-                        }
-                        break;
-                    case nameof(Password):
-                        if (string.IsNullOrWhiteSpace(Password))
-                        {
-                            Error = "Pole Hasło jest wymagane.";
-                            _isPasswordValid = false;
-                        }
-                        else
-                        {
-                            Error = string.Empty;
-                            _isPasswordValid = true;
-                        }
-                        break;
-                }
-
-                return Error;
+                return Settings.Default.ServerAddress;
+            }
+            set
+            {
+                Settings.Default.ServerAddress = value;
             }
         }
-        public string Error { get; set; }
-        public bool IsValid
+        public static string ServerName
         {
             get
             {
-                return _isServerAddressValid && 
-                    _isServerNameValid && 
-                    _isDbNameValid && 
-                    _isUserNameValid && 
-                    _isPasswordValid;
+                return Settings.Default.ServerName;
             }
+            set
+            {
+                Settings.Default.ServerName = value;
+            }
+        }
+        public static string DbName
+        {
+            get
+            {
+                return Settings.Default.DbName;
+            }
+            set
+            {
+                Settings.Default.DbName = value;
+            }
+        }
+        public static string UserName
+        {
+            get
+            {
+                return Settings.Default.UserName;
+            }
+            set
+            {
+                Settings.Default.UserName = value;
+            }
+        }
+        public static string Password
+        {
+            get
+            {
+                return Settings.Default.Password;
+            }
+            set
+            {
+                Settings.Default.Password = value;
+            }
+        }
+
+        public static string GetConnectionString()
+        {
+            return $"Data Source=TAXUS131\\SQLEXPRESS01;Initial Catalog=Fghjj;Integrated Security=True";
         }
     }
 }

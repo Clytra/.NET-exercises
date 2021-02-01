@@ -30,6 +30,7 @@ namespace Diary.ViewModels
 
         public ICommand CloseCommand { get; set; }
         public ICommand ConfirmCommand { get; set; }
+        public static string ConnectionString { get; set; }
 
         private StudentWrapper _student;
 
