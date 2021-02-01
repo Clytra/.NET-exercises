@@ -62,7 +62,7 @@ namespace Diary.Models.Wrappers
 
         public static string GetConnectionString()
         {
-            return $"Data Source=TAXUS131\\SQLEXPRESS01;Initial Catalog=Diary;Integrated Security=True";
+            return $"Server={ServerName};Database={DbName};User Id={UserName};Password={Password};";
         }
     }
 }

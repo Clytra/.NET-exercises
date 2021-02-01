@@ -181,6 +181,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="DbScripts\202101262136141_SetLastNameMaxLengthAndRequiredInStudentsTable.sql" />
+    <SplashScreen Include="Images\splash_screen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
