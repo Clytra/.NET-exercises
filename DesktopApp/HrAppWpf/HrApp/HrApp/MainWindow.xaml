@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Dodaj pracownika" Height="25" Width="100" Margin="5" />
+            <Button Content="Edytuj dane pracownika" Height="25" Width="100" Margin="5" />
+            <Button Content="Zwolnij pracownika" Height="25" Width="100" Margin="5" />
+            <ComboBox Height="25" Width="150" Margin="5"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Margin="5"/>
     </Grid>
 </Window>
