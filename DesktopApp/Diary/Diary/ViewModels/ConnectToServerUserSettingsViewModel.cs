@@ -26,7 +26,6 @@ namespace Diary.ViewModels
             else
             {
                 Server = server;
-               // IsUpdate = true;
             }
         }
 
@@ -38,28 +37,23 @@ namespace Diary.ViewModels
 
         private void Confirm(object obj)
         {
-            Settings.Default.ServerAddress = Server.ServerAddress;
-            Settings.Default.ServerName = Server.ServerName;
-            Settings.Default.DbName = Server.DbName;
-            Settings.Default.UserName = Server.UserName;
-            Settings.Default.Password = Server.Password;
-
             IsConnected = CheckConnection();
             if (IsConnected)
             {
-                Settings.Default.Save();
+                SaveSettings();
+                
                 CloseWindow(obj as Window);
             }
             else
             {
                 CloseWindow(obj as Window);
-                var window = MessageBox
+                var result = MessageBox
                     .Show("Nie udało się nawiązać połączenia." +
                     " Czy chcesz zmienić ustawienia?",
                     "Błąd połączenia",
                     MessageBoxButton.YesNo);
 
-                if (window.Equals("Yes"))
+                if (result == MessageBoxResult.Yes)
                 {
                     SetServerConnection(obj as Server);
                 }
@@ -69,8 +63,6 @@ namespace Diary.ViewModels
                 }
             }
         }
-
-        
 
         private Server _server;
 
@@ -86,7 +78,7 @@ namespace Diary.ViewModels
 
         private void Close(object obj)
         {
-           
+            CloseWindow(obj as Window);
         }
 
         private void CloseWindow(Window window)
@@ -116,6 +108,16 @@ namespace Diary.ViewModels
             {
                 return false;
             }
+        }
+
+        private void SaveSettings()
+        {
+            Settings.Default.ServerAddress = Server.ServerAddress;
+            Settings.Default.ServerName = Server.ServerName;
+            Settings.Default.DbName = Server.DbName;
+            Settings.Default.UserName = Server.UserName;
+            Settings.Default.Password = Server.Password;
+            Settings.Default.Save();
         }
     }
 }

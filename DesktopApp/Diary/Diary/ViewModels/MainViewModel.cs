@@ -1,8 +1,6 @@
 ﻿using Diary.Commands;
-using Diary.Models;
 using Diary.Models.Domains;
 using Diary.Models.Wrappers;
-using Diary.Properties;
 using Diary.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -41,12 +39,12 @@ namespace Diary.ViewModels
             }
             else
             {
-                var window = MessageBox
+                var result = MessageBox
                     .Show("Nie udało się nawiązać połączenia z bazą danych." +
                     " Czy chcesz zmienić ustawienia?",
                     "Błąd połączenia",
                     MessageBoxButton.YesNo);
-                if (window.Equals("Yes"))
+                if (result == MessageBoxResult.Yes)
                 {
                     Server server = new Server();
                     SetServerConnection(server);

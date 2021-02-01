@@ -1,5 +1,4 @@
 ﻿using Diary.Properties;
-using System.ComponentModel;
 
 namespace Diary.Models.Wrappers 
 {
@@ -63,7 +62,7 @@ namespace Diary.Models.Wrappers
 
         public static string GetConnectionString()
         {
-            return $"Data Source=TAXUS131\\SQLEXPRESS01;Initial Catalog=Fghjj;Integrated Security=True";
+            return $"Data Source=TAXUS131\\SQLEXPRESS01;Initial Catalog=Diary;Integrated Security=True";
         }
     }
 }
