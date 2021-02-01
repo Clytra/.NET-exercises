@@ -8,6 +8,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,20 +21,42 @@ namespace Diary.ViewModels
         private Repository _repository = new Repository();
         public MainViewModel()
         {
-            using (var context = new ApplicationDbContext())
+            IsConnected = CheckConnection();
+
+            if (IsConnected)
             {
-                var students = context.Students.ToList();
+                using (var context = new ApplicationDbContext())
+                {
+                    var students = context.Students.ToList();
+                }
+
+                RefreshStudentsCommand = new RelayCommand(RefreshStudents);
+                AddStudentsCommand = new RelayCommand(AddEditStudent);
+                EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
+                DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
+                SettingsCommand = new RelayCommand(SetServerConnection);
+
+                RefreshDiary();
+                InitGroups();
+            }
+            else
+            {
+                var window = MessageBox
+                    .Show("Nie udało się nawiązać połączenia z bazą danych." +
+                    " Czy chcesz zmienić ustawienia?",
+                    "Błąd połączenia",
+                    MessageBoxButton.YesNo);
+                if (window.Equals("Yes"))
+                {
+                    Server server = new Server();
+                    SetServerConnection(server);
+                }
+                else
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }           
             }
 
-            RefreshStudentsCommand = new RelayCommand(RefreshStudents);
-            AddStudentsCommand = new RelayCommand(AddEditStudent);
-            EditStudentsCommand = new RelayCommand(AddEditStudent, CanEditDeleteStudent);
-            DeleteStudentsCommand = new AsyncRelayCommand(DeleteStudent, CanEditDeleteStudent);
-            SettingsCommand = new RelayCommand(SetServerConnection);
-
-            CheckConnection();
-            RefreshDiary();
-            InitGroups();
         }
 
         public ICommand RefreshStudentsCommand { get; set; }
@@ -41,7 +64,8 @@ namespace Diary.ViewModels
         public ICommand EditStudentsCommand { get; set; }
         public ICommand DeleteStudentsCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
-        public int connectionStatus { get; set; }
+        public static string ConnectionString { get; set; }
+        public bool IsConnected { get; set; }
 
         private ObservableCollection<StudentWrapper> _students;
 
@@ -75,18 +99,6 @@ namespace Diary.ViewModels
             set
             {
                 _groups = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private ServerWrapper _currentSettings;
-
-        public ServerWrapper CurrentSettings
-        {
-            get { return _currentSettings; }
-            set
-            {
-                _currentSettings = value;
                 OnPropertyChanged();
             }
         }
@@ -157,7 +169,7 @@ namespace Diary.ViewModels
 
         private void SetServerConnection(object obj)
         {
-            var connectToServerUserSettingsWindow = new ConnectToServerUserSettingsView(obj as ServerWrapper);
+            var connectToServerUserSettingsWindow = new ConnectToServerUserSettingsView(obj as Server);
             connectToServerUserSettingsWindow.Closed += connectToServerUserSettingsWindow_Closed;
             connectToServerUserSettingsWindow.ShowDialog();
         }
@@ -166,29 +178,22 @@ namespace Diary.ViewModels
         {
             RefreshDiary();
         }
-        private void CheckConnection()
+
+        private bool CheckConnection()
         {
-            ServerWrapper model = new ServerWrapper
-            {
-                ServerAddress = Settings.Default.ServerAddress,
-                ServerName = Settings.Default.ServerName,
-                DbName = Settings.Default.DbName,
-                UserName = Settings.Default.UserName,
-                Password = Settings.Default.Password
-            };
+            var connectionString = ServerWrapper.GetConnectionString();
 
-            connectionStatus = _repository.ConnectToDb(model);
-
-            switch (connectionStatus)
+            try
             {
-                case 3:
-                    ServerWrapper server = new ServerWrapper();
-                    SetServerConnection(server);
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
+                SqlConnection testConnection = new SqlConnection(connectionString);
+                testConnection.Open();
+                testConnection.Close();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

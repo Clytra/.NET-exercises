@@ -6,9 +6,7 @@ using System.Data.Entity;
 using Diary.Models.Converters;
 using Diary.Models;
 using System;
-using Diary.Properties;
 using System.Data.SqlClient;
-using System.Windows;
 
 namespace Diary
 {
@@ -149,38 +147,20 @@ namespace Diary
             }
         }
 
-        public int ConnectToDb(ServerWrapper settings)
+        public bool CheckConnection(string conn)
         {
-            if (settings.IsValid)
-            {
-                try
-                {
-                    SqlConnection thisConnection = new SqlConnection
-                        ($@"Server=({settings.ServerAddress})\{settings.ServerName};Database={settings.DbName};User Id={settings.UserName};Password={settings.Password};App=EntityFramework");
-                    thisConnection.Open();
-                    return 1;
-                }
-                catch (Exception)
-                {
+            SqlConnection thisConnection = new SqlConnection(conn);
 
-                    throw;
-                }
+            try
+            {
+                thisConnection.Open();
+                thisConnection.Close();
+
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                var window = MessageBox
-                    .Show("Nie ustanowiono połączenia z bazą danych. Czy chcesz nawiązań nowe połączenie?", 
-                    "Brak połączenia", 
-                    MessageBoxButton.YesNo);
-
-                if (window.Equals("No"))
-                {
-                    return (int)ConnectionStatus.CONNECTION_CANCELLED_BY_USER;
-                }
-                else
-                {
-                    return (int)ConnectionStatus.USER_ATTEMPTING_TO_CONNECT;
-                }
+                return false;
             }
         }
     }
