@@ -6,8 +6,8 @@ namespace Diary
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+        public ApplicationDbContext(string connectionString)
+            : base(connectionString)
         {
         }
 
