@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HrApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace HrApp.Views
         public AddEditEmployeeView()
         {
             InitializeComponent();
+            DataContext = new AddEditEmployeeViewModel();
         }
     }
 }
