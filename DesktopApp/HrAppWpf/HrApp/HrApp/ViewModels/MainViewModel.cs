@@ -5,6 +5,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -93,6 +94,11 @@ namespace HrApp.ViewModels
         private void addEditEmployeeWindow_Closed(object sender, EventArgs e)
         {
             RefreshList();
+        }
+
+        private void RefreshList()
+        {
+            
         }
 
         private void InitFilter()

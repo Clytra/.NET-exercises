@@ -1,4 +1,5 @@
-﻿using HrApp.Models.Domains;
+﻿using HrApp.Models.Configurations;
+using HrApp.Models.Domains;
 using System.Data.Entity;
 
 namespace HrApp
