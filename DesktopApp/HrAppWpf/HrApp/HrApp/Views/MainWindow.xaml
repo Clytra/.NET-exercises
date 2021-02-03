@@ -14,14 +14,61 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="Dodaj pracownika" Height="25" Width="Auto" Margin="5" />
-            <Button Content="Edytuj dane pracownika" Height="25" Width="Auto" Margin="5" />
-            <Button Content="Zwolnij pracownika" Height="25" Width="Auto" Margin="5" />
+            <Button 
+                Command="{Binding AddEmployeeCommand}"
+                Content="Dodaj pracownika" 
+                Height="25" 
+                Width="Auto" 
+                Margin="5" />
+            <Button 
+                Command="{Binding EditEmployeeCommand}"
+                Content="Edytuj dane pracownika" 
+                Height="25" 
+                Width="Auto" 
+                Margin="5" />
+            <Button 
+                Command="{Binding DismissalEmployeeCommand}"
+                Content="Zwolnij pracownika" 
+                Height="25" 
+                Width="Auto" 
+                Margin="5" />
+            <Button
+                Command="{Binding RefreshEmployeeCommand}"
+                Content="Odśwież listę"
+                Height="25"
+                Width="Auto"
+                Margin="5"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Content="Filtruj:" Margin="5"/>
-            <ComboBox Height="25" Width="150" Margin="5" />
+            <ComboBox 
+                Height="25" 
+                Width="150" 
+                Margin="5" 
+                ItemsSource="{Binding Filters}"
+                SelectedValue="{Binding SelectedFilterId}"
+                DisplayMemberPath="Name"
+                SelectedValuePath="Id"
+                />
         </StackPanel>
-        <DataGrid Grid.Row="1" Margin="5"/>
+        <DataGrid 
+            Grid.Row="1" 
+            Margin="5"
+            ItemsSource="{Binding Employees}"
+            SelectedItem="{Binding SelectedEmployee}"
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            SelectionMode="Single"
+            AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię"/>
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko"/>
+                <DataGridTextColumn Binding="{Binding DateOfEmployment}" Header="Data zatrudnienia"/>
+                <DataGridTextColumn Binding="{Binding DateOfEmployeeDismissal}" Header="Data zwolnienia"/>
+                <DataGridTextColumn Binding="{Binding Earnings}" Header="Zarobki"/>
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </mah:MetroWindow>
