@@ -15,6 +15,11 @@ namespace HrApp.ViewModels
     {
         public MainViewModel()
         {
+            using (var context = new ApplicationDbContext())
+            {
+                var employees = context.Employees.ToList();
+            }
+
             RefreshEmployeeCommand = new RelayCommand(RefreshEmployees);
             AddEmployeeCommand = new RelayCommand(AddEditEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
