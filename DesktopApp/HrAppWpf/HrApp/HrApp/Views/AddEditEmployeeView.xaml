@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HrApp.Views"
         mc:Ignorable="d"
+        Name="AddEditEmployeeWindow"
         Title="AddEditEmployeeView" Height="350" Width="400">
     <Grid>
         <Grid.RowDefinitions>
@@ -21,27 +22,39 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Content="Id:" Margin="5"/>
-        <TextBox Grid.Column="1" Margin="5"/>
+        <Label Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+               Content="Id:"
+               Margin="5"/>
+        <TextBox Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+                 Text="{Binding Employee.Id}"
+                 IsReadOnly="True"
+                 Grid.Column="1"
+                 Margin="5"/>
 
         <Label Grid.Row="1" Content="Imię:" Margin="5"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Employee.FirstName}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="2" Content="Nazwisko:" Margin="5"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Employee.LastName}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3" Content="Data zatrudnienia:" Margin="5"/>
-        <DatePickerTextBox Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <DatePickerTextBox Text="{Binding Employee.DateOfEmployment}" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="4" Content="Zarobki:" Margin="5"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Employee.Earnings}" Grid.Row="4" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="5" Content="Uwagi:" Margin="5"/>
-        <TextBox Grid.Row="5" Grid.Column="1" Margin="5"/>
+        <TextBox 
+            Text="{Binding Employee.Comments}" 
+            TextWrapping="Wrap"
+            AcceptsReturn="True"
+            Grid.Row="5" 
+            Grid.Column="1" 
+            Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right">
-            <Button Content="Anuluj" Height="25" Width="100" Margin="5"/>
-            <Button Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditEmployeeWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditEmployeeWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
         </StackPanel>
     </Grid>
 </Window>

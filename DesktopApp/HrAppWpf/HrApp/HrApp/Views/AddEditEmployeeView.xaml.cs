@@ -1,17 +1,6 @@
-﻿using HrApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HrApp.Models.Domains;
+using HrApp.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HrApp.Views
 {
@@ -20,10 +9,10 @@ namespace HrApp.Views
     /// </summary>
     public partial class AddEditEmployeeView : Window
     {
-        public AddEditEmployeeView()
+        public AddEditEmployeeView(Employee employee = null)
         {
             InitializeComponent();
-            DataContext = new AddEditEmployeeViewModel();
+            DataContext = new AddEditEmployeeViewModel(employee);
         }
     }
 }
