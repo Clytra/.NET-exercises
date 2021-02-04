@@ -7,6 +7,7 @@ namespace HrApp.ViewModels
 {
     public class AddEditEmployeeViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public AddEditEmployeeViewModel(Employee employee = null)
         {
             CloseCommand = new RelayCommand(Close);
@@ -61,12 +62,12 @@ namespace HrApp.ViewModels
 
         private void UpdateEmployee()
         {
-            throw new NotImplementedException();
+            _repository.UpdateEmployee(Employee);
         }
 
         private void AddEmployee()
         {
-            throw new NotImplementedException();
+            _repository.AddEmployee(Employee);
         }
 
         private void Close(object obj)

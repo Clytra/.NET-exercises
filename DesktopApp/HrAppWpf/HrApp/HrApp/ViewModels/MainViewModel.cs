@@ -14,6 +14,7 @@ namespace HrApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private Repository _repository = new Repository();
         public MainViewModel()
         {
             using (var context = new ApplicationDbContext())
@@ -26,6 +27,7 @@ namespace HrApp.ViewModels
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
             DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
 
+            RefreshList();
             InitFilter();
         }
 
@@ -98,7 +100,8 @@ namespace HrApp.ViewModels
 
         private void RefreshList()
         {
-            
+            Employees = new ObservableCollection<Employee>
+                (_repository.GetEmployees());
         }
 
         private void InitFilter()

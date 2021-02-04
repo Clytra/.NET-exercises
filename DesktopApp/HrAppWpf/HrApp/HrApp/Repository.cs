@@ -18,5 +18,27 @@ namespace HrApp
                 return employees;
             }
         }
+
+        public void UpdateEmployee(Employee employee)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var employeeToUpdate = context.Employees.Find(employee.Id);
+                employeeToUpdate.FirstName = employee.FirstName;
+                employeeToUpdate.LastName = employee.LastName;
+                employeeToUpdate.DateOfEmployment = employee.DateOfEmployment;
+                employeeToUpdate.Earnings = employee.Earnings;
+                employeeToUpdate.Comments = employee.Comments;
+            }
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var newEmployee = context.Employees.Add(employee);
+                context.SaveChanges();
+            }
+        }
     }
 }
