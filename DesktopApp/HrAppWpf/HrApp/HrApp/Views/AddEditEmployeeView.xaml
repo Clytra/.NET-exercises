@@ -1,12 +1,14 @@
-﻿<Window x:Class="HrApp.Views.AddEditEmployeeView"
+﻿<mah:MetroWindow x:Class="HrApp.Views.AddEditEmployeeView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HrApp.Views"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Name="AddEditEmployeeWindow"
-        Title="AddEditEmployeeView" Height="350" Width="400">
+        Title="Dane Pracownika" Height="350" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -23,19 +25,25 @@
         </Grid.ColumnDefinitions>
 
         <Label Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
+               Grid.Row="0"
                Content="Id:"
                Margin="5"/>
         <TextBox Visibility="{Binding IsUpdate, Converter={StaticResource BooleanToVisibilityConverter}}"
                  Text="{Binding Employee.Id}"
                  IsReadOnly="True"
+                 Grid.Row="0"
                  Grid.Column="1"
                  Margin="5"/>
 
         <Label Grid.Row="1" Content="Imię:" Margin="5"/>
-        <TextBox Text="{Binding Employee.FirstName}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Employee.LastName,
+            UpdateSourceTrigger=PropertyChanged,
+            ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="2" Content="Nazwisko:" Margin="5"/>
-        <TextBox Text="{Binding Employee.LastName}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBox Text="{Binding Employee.LastName,
+            UpdateSourceTrigger=PropertyChanged,
+            ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3" Content="Data zatrudnienia:" Margin="5"/>
         <DatePickerTextBox Text="{Binding Employee.DateOfEmployment}" Grid.Row="3" Grid.Column="1" Margin="5"/>
@@ -57,4 +65,4 @@
             <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditEmployeeWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
         </StackPanel>
     </Grid>
-</Window>
+</mah:MetroWindow>

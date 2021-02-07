@@ -74,11 +74,9 @@ namespace HrApp.ViewModels
                 MessageDialogStyle.AffirmativeAndNegative);
 
             if (dialog != MessageDialogResult.Affirmative)
-            {
                 return;
-            }
 
-            RefreshList();
+            _repository.DismissEmployee(SelectedEmployee.Id);
         }
 
         private void AddEditEmployee(object obj)

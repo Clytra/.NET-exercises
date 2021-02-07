@@ -29,6 +29,8 @@ namespace HrApp
                 employeeToUpdate.DateOfEmployment = employee.DateOfEmployment;
                 employeeToUpdate.Earnings = employee.Earnings;
                 employeeToUpdate.Comments = employee.Comments;
+
+                context.SaveChanges();
             }
         }
 
@@ -37,6 +39,18 @@ namespace HrApp
             using (var context = new ApplicationDbContext())
             {
                 var newEmployee = context.Employees.Add(employee);
+
+                context.SaveChanges();
+            }
+        }
+
+        internal void DismissEmployee(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var dismissEmployee = context.Employees.Find(id);
+                dismissEmployee.DateOfEmployeeDismissal = DateTime.Now;
+
                 context.SaveChanges();
             }
         }

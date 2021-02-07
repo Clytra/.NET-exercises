@@ -22,12 +22,14 @@
                 Margin="5" />
             <Button 
                 Command="{Binding EditEmployeeCommand}"
+                CommandParameter="{Binding SelectedEmployee}"
                 Content="Edytuj dane pracownika" 
                 Height="25" 
                 Width="Auto" 
                 Margin="5" />
             <Button 
                 Command="{Binding DismissalEmployeeCommand}"
+                CommandParameter="{Binding SelectedEmployee}"
                 Content="Zwolnij pracownika" 
                 Height="25" 
                 Width="Auto" 

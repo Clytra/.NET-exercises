@@ -2,6 +2,7 @@
 using HrApp.Models.Domains;
 using System;
 using System.Windows;
+using System.Windows.Input;
 
 namespace HrApp.ViewModels
 {
@@ -24,8 +25,8 @@ namespace HrApp.ViewModels
             }
         }
 
-        public RelayCommand CloseCommand { get; }
-        public RelayCommand ConfirmCommand { get; }
+        public ICommand CloseCommand { get; }
+        public ICommand ConfirmCommand { get; }
 
 
         private Employee _employee;
@@ -76,7 +77,7 @@ namespace HrApp.ViewModels
         }
         private void CloseWindow(Window window)
         {
-            throw new NotImplementedException();
+            window.Close();
         }
     }
 }

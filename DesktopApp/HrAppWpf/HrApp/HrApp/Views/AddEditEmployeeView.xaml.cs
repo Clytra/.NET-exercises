@@ -1,13 +1,13 @@
 ﻿using HrApp.Models.Domains;
 using HrApp.ViewModels;
-using System.Windows;
+using MahApps.Metro.Controls;
 
 namespace HrApp.Views
 {
     /// <summary>
     /// Interaction logic for AddEditEmployeeView.xaml
     /// </summary>
-    public partial class AddEditEmployeeView : Window
+    public partial class AddEditEmployeeView : MetroWindow
     {
         public AddEditEmployeeView(Employee employee = null)
         {
