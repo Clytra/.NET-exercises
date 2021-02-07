@@ -83,6 +83,8 @@
     </ApplicationDefinition>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
+    <Compile Include="Models\Configurations\FilterConfiguration.cs" />
+    <Compile Include="Models\Domains\Filter.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditEmployeeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

@@ -4,6 +4,7 @@ using HrApp.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,8 +27,8 @@ namespace HrApp.ViewModels
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
             DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
 
-            RefreshList();
             InitFilter();
+            RefreshList();
         }
 
         public ICommand AddEmployeeCommand { get; set; }
@@ -53,6 +54,30 @@ namespace HrApp.ViewModels
             set
             {
                 _employees = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Filter> _filters;
+
+        public ObservableCollection<Filter> Filters
+        {
+            get { return _filters; }
+            set
+            {
+                _filters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _selectedFilterId;
+
+        public int SelectedFilterId
+        {
+            get { return _selectedFilterId; }
+            set
+            {
+                _selectedFilterId = value;
                 OnPropertyChanged();
             }
         }
@@ -93,12 +118,17 @@ namespace HrApp.ViewModels
         private void RefreshList()
         {
             Employees = new ObservableCollection<Employee>
-                (_repository.GetEmployees());
+                (_repository.GetEmployees(SelectedFilterId));
         }
 
         private void InitFilter()
         {
+            var filters = _repository.GetFilters();
+            filters.Insert(0, new Filter { Id = 0, Name = "Wszyscy" });
 
+            Filters = new ObservableCollection<Filter>(filters);
+
+            SelectedFilterId = 0;
         }
     }
 }

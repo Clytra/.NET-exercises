@@ -7,13 +7,23 @@ namespace HrApp
 {
     class Repository
     {
-        public List<Employee> GetEmployees()
+        public List<Employee> GetEmployees(int selectedFilterId)
         {
             using (var context = new ApplicationDbContext())
             {
-                var employees = context.Employees.ToList();
+                var employees = context.Employees.AsQueryable();
 
-                return employees;
+                switch (selectedFilterId)
+                {
+                    case 1:
+                        employees = employees.Where(x => x.DateOfEmployeeDismissal == null);
+                        break;
+                    case 2:
+                        employees = employees.Where(x => x.DateOfEmployeeDismissal != null);
+                        break;
+                }
+
+                return employees.ToList();
             }
         }
 
@@ -36,15 +46,8 @@ namespace HrApp
         {
             using (var context = new ApplicationDbContext())
             {
-                var newEmployee = new Employee();
-                newEmployee.FirstName = employee.FirstName;
-                newEmployee.LastName = employee.LastName;
-                newEmployee.DateOfEmployment = employee.DateOfEmployment;
-                newEmployee.DateOfEmployeeDismissal = employee.DateOfEmployeeDismissal;
-                newEmployee.Earnings = employee.Earnings;
-                newEmployee.Comments = employee.Comments;
-                    
-                context.Employees.Add(newEmployee);
+                var newEmployee = context.Employees.Add(employee);
+
                 context.SaveChanges();
             }
         }
@@ -57,6 +60,14 @@ namespace HrApp
                 dismissEmployee.DateOfEmployeeDismissal = DateTime.Now;
 
                 context.SaveChanges();
+            }
+        }
+
+        public List<Filter> GetFilters()
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                return context.Filters.ToList();
             }
         }
     }
