@@ -34,12 +34,6 @@
                 Height="25" 
                 Width="Auto" 
                 Margin="5" />
-            <Button
-                Command="{Binding RefreshEmployeeCommand}"
-                Content="Odśwież listę"
-                Height="25"
-                Width="Auto"
-                Margin="5"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Content="Filtruj:" Margin="5"/>

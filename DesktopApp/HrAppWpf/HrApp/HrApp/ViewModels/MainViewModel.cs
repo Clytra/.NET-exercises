@@ -4,10 +4,8 @@ using HrApp.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -24,7 +22,6 @@ namespace HrApp.ViewModels
                 var employees = context.Employees.ToList();
             }
 
-            RefreshEmployeeCommand = new RelayCommand(RefreshEmployees);
             AddEmployeeCommand = new RelayCommand(AddEditEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
             DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
@@ -33,7 +30,6 @@ namespace HrApp.ViewModels
             InitFilter();
         }
 
-        public ICommand RefreshEmployeeCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand DismissalEmployeeCommand { get; set; }
@@ -79,6 +75,7 @@ namespace HrApp.ViewModels
                 return;
 
             _repository.DismissEmployee(SelectedEmployee.Id);
+            RefreshList();
         }
 
         private void AddEditEmployee(object obj)
@@ -86,11 +83,6 @@ namespace HrApp.ViewModels
             var addEditEmployeeWindow = new AddEditEmployeeView(obj as Employee);
             addEditEmployeeWindow.Closed += addEditEmployeeWindow_Closed;
             addEditEmployeeWindow.ShowDialog();
-        }
-
-        private void RefreshEmployees(object obj)
-        {
-            RefreshList();
         }
 
         private void addEditEmployeeWindow_Closed(object sender, EventArgs e)

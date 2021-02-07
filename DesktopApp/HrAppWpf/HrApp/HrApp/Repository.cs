@@ -36,8 +36,15 @@ namespace HrApp
         {
             using (var context = new ApplicationDbContext())
             {
-                var newEmployee = context.Employees.Add(employee);
-
+                var newEmployee = new Employee();
+                newEmployee.FirstName = employee.FirstName;
+                newEmployee.LastName = employee.LastName;
+                newEmployee.DateOfEmployment = employee.DateOfEmployment;
+                newEmployee.DateOfEmployeeDismissal = employee.DateOfEmployeeDismissal;
+                newEmployee.Earnings = employee.Earnings;
+                newEmployee.Comments = employee.Comments;
+                    
+                context.Employees.Add(newEmployee);
                 context.SaveChanges();
             }
         }

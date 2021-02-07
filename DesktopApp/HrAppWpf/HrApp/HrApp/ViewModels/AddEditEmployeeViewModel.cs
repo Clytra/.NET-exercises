@@ -1,5 +1,6 @@
 ﻿using HrApp.Commands;
 using HrApp.Models.Domains;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -38,6 +39,7 @@ namespace HrApp.ViewModels
                 OnPropertyChanged();
             }
         }
+
         private bool _isUpdate;
         public bool IsUpdate
         {
