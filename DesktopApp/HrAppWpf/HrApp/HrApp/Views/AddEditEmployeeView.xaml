@@ -36,7 +36,7 @@
                  Margin="5"/>
 
         <Label Grid.Row="1" Content="Imię:" Margin="5"/>
-        <TextBox Text="{Binding Employee.LastName,
+        <TextBox Text="{Binding Employee.FirstName,
             UpdateSourceTrigger=PropertyChanged,
             ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="1" Margin="5"/>
 
@@ -46,7 +46,7 @@
             ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="3" Content="Data zatrudnienia:" Margin="5"/>
-        <DatePickerTextBox Text="{Binding Employee.DateOfEmployment}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <DatePicker Text="{Binding Employee.DateOfEmployment}" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
         <Label Grid.Row="4" Content="Zarobki:" Margin="5"/>
         <TextBox Text="{Binding Employee.Earnings}" Grid.Row="4" Grid.Column="1" Margin="5"/>

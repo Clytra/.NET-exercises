@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrApp", "HrApp\HrApp.csproj", "{903B9BB7-5BCA-4E1F-8DAB-22CE1911B49E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HrApp", "HrApp\HrApp.csproj", "{EBEE97CB-1A20-4B99-BE4E-5775991039BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{903B9BB7-5BCA-4E1F-8DAB-22CE1911B49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{903B9BB7-5BCA-4E1F-8DAB-22CE1911B49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{903B9BB7-5BCA-4E1F-8DAB-22CE1911B49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{903B9BB7-5BCA-4E1F-8DAB-22CE1911B49E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEE97CB-1A20-4B99-BE4E-5775991039BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEE97CB-1A20-4B99-BE4E-5775991039BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEE97CB-1A20-4B99-BE4E-5775991039BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEE97CB-1A20-4B99-BE4E-5775991039BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EC92FAC3-B538-48B2-8CF9-AB92FCE4858A}
+		SolutionGuid = {5A95CA02-7F73-4959-B7E8-4F1B6B97E3D9}
 	EndGlobalSection
 EndGlobal

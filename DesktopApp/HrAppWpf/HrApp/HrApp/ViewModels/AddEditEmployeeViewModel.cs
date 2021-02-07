@@ -1,12 +1,11 @@
 ﻿using HrApp.Commands;
 using HrApp.Models.Domains;
-using System;
 using System.Windows;
 using System.Windows.Input;
 
 namespace HrApp.ViewModels
 {
-    public class AddEditEmployeeViewModel : ViewModelBase
+    class AddEditEmployeeViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
         public AddEditEmployeeViewModel(Employee employee = null)
@@ -30,7 +29,7 @@ namespace HrApp.ViewModels
 
 
         private Employee _employee;
-        public Employee Employee 
+        public Employee Employee
         {
             get { return _employee; }
             set

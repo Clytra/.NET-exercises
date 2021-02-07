@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace HrApp.Models.Configurations
 {
-    public class EmployeeConfiguration : EntityTypeConfiguration<Employee>
+    class EmployeeConfiguration : EntityTypeConfiguration<Employee>
     {
         public EmployeeConfiguration()
         {

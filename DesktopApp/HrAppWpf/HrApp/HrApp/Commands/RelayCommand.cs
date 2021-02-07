@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace HrApp.Commands
 {
-    public class RelayCommand : ICommand
+    class RelayCommand : ICommand
     {
         readonly Action<object> _execute;
         readonly Predicate<object> _canExecute;

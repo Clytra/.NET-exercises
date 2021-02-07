@@ -4,15 +4,17 @@ using HrApp.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
 namespace HrApp.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    class MainViewModel : ViewModelBase
     {
         private Repository _repository = new Repository();
         public MainViewModel()
@@ -104,7 +106,7 @@ namespace HrApp.ViewModels
 
         private void InitFilter()
         {
-            
+
         }
     }
 }
