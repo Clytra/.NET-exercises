@@ -27,13 +27,15 @@ namespace ReportService
                         break;
                 }
             }
-
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
+            else
             {
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[]
+                {
                 new ReportService()
-            };
-            ServiceBase.Run(ServicesToRun);
+                };
+                ServiceBase.Run(ServicesToRun);
+            }
         }
     }
 }
