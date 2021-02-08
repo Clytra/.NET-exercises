@@ -1,12 +1,13 @@
 ﻿using HrApp.Models.Configurations;
 using HrApp.Models.Domains;
+using HrApp.Models.Wrappers;
 using System.Data.Entity;
 
 namespace HrApp
 {
     class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() : base("name=ApplicationDbContext") { }
+        public ApplicationDbContext() : base(ServerWrapper.GetConnectionString()) { }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Filter> Filters { get; set; }

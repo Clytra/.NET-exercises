@@ -85,11 +85,18 @@
     <Compile Include="Models\Configurations\EmployeeConfiguration.cs" />
     <Compile Include="Models\Configurations\FilterConfiguration.cs" />
     <Compile Include="Models\Domains\Filter.cs" />
+    <Compile Include="Models\Domains\Server.cs" />
+    <Compile Include="Models\Wrappers\ServerWrapper.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModels\AddEditEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\ConnectToServerUserSettingsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="Views\AddEditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConnectToServerUserSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,6 +112,9 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Views\AddEditEmployeeView.xaml.cs">
       <DependentUpon>AddEditEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConnectToServerUserSettingsView.xaml.cs">
+      <DependentUpon>ConnectToServerUserSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

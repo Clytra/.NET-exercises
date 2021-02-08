@@ -1,10 +1,12 @@
 ﻿using HrApp.Commands;
 using HrApp.Models.Domains;
+using HrApp.Models.Wrappers;
 using HrApp.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,24 +19,49 @@ namespace HrApp.ViewModels
         private Repository _repository = new Repository();
         public MainViewModel()
         {
-            using (var context = new ApplicationDbContext())
+            IsConnected = CheckConnection();
+
+            if (IsConnected)
             {
-                var employees = context.Employees.ToList();
+                using (var context = new ApplicationDbContext())
+                {
+                    var employees = context.Employees.ToList();
+                }
+
+                RefreshEmployeeCommand = new RelayCommand(RefreshEmployee);
+                AddEmployeeCommand = new RelayCommand(AddEditEmployee);
+                EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
+                DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
+
+                InitFilter();
+                RefreshList();
             }
-
-            RefreshEmployeeCommand = new RelayCommand(RefreshEmployee);
-            AddEmployeeCommand = new RelayCommand(AddEditEmployee);
-            EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
-            DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
-
-            InitFilter();
-            RefreshList();
+            else
+            {
+                var result = MessageBox
+                    .Show("Nie udało się nawiązać połączenia z bazą danych." +
+                    " Czy chcesz zmienić ustawienia?",
+                    "Błąd połączenia",
+                    MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    Server server = new Server();
+                    SetServerConnection(server);
+                }
+                else
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }
+            }
         }
 
         public ICommand RefreshEmployeeCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand DismissalEmployeeCommand { get; set; }
+        public ICommand SettingsCommand { get; set; }
+        public static string ConnectionString { get; set; }
+        public bool IsConnected { get; set; }
 
 
         private Employee _selectedEmployee;
@@ -135,6 +162,36 @@ namespace HrApp.ViewModels
             Filters = new ObservableCollection<Filter>(filters);
 
             SelectedFilterId = 0;
+        }
+
+        private void SetServerConnection(object obj)
+        {
+            var connectToServerUserSettingsWindow = new ConnectToServerUserSettingsView(obj as Server);
+            connectToServerUserSettingsWindow.Closed += connectToServerUserSettingsWindow_Closed;
+            connectToServerUserSettingsWindow.ShowDialog();
+        }
+
+        private void connectToServerUserSettingsWindow_Closed(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        private bool CheckConnection()
+        {
+            var connectionString = ServerWrapper.GetConnectionString();
+
+            try
+            {
+                SqlConnection testConnection = new SqlConnection(connectionString);
+                testConnection.Open();
+                testConnection.Close();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
