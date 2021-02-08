@@ -4,7 +4,6 @@ using HrApp.Views;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +22,7 @@ namespace HrApp.ViewModels
                 var employees = context.Employees.ToList();
             }
 
+            RefreshEmployeeCommand = new RelayCommand(RefreshEmployee);
             AddEmployeeCommand = new RelayCommand(AddEditEmployee);
             EditEmployeeCommand = new RelayCommand(AddEditEmployee, CanEditDismissalEmployee);
             DismissalEmployeeCommand = new AsyncRelayCommand(DismissalEmployee, CanEditDismissalEmployee);
@@ -31,6 +31,7 @@ namespace HrApp.ViewModels
             RefreshList();
         }
 
+        public ICommand RefreshEmployeeCommand { get; set; }
         public ICommand AddEmployeeCommand { get; set; }
         public ICommand EditEmployeeCommand { get; set; }
         public ICommand DismissalEmployeeCommand { get; set; }
@@ -80,6 +81,11 @@ namespace HrApp.ViewModels
                 _selectedFilterId = value;
                 OnPropertyChanged();
             }
+        }
+
+        private void RefreshEmployee(object obj)
+        {
+            RefreshList();
         }
 
         private bool CanEditDismissalEmployee(object obj)
