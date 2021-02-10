@@ -59,25 +59,28 @@ namespace ReportService.Models
                             <td allign=center bgcolor=lightgrey>Wartość</td>
                         </tr>
                 ";
-            }
 
-            foreach (var position in report.Positions)
-            {,
-                html +=
-                    $@"<tr>
+                foreach (var position in report.Positions)
+                {
+                    html +=
+                        $@"<tr>
                         <td allign=center>{position.Title}</td>
                         <td allign=center>{position.Description}</td>
                         <td allign=center>{position.Value.ToString("0.00")} zł</td>
                        </tr>
                     ";
+                }
+
+                html += "</table>";
+            }
+            else
+            {
+                html += "-- Brak danych do wyświetlenia --";
             }
 
-            if (report.Positions != null && report.Positions.Any())
-                html += "</table>";
-            else
-                html += "-- Brak danych do wyświetlenia --";
-
             html += @"<br /><br/ ><i>Automatyczna wiadomość wysłana w aplikacji ReportService.</i>";
+
+            return html;
         }
     }
 }
