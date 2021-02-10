@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
+﻿using ReportService.Repositories;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 
 namespace ReportService
@@ -15,6 +8,8 @@ namespace ReportService
     {
         private const int IntervalInMinutes = 30;
         private Timer _timer = new Timer(IntervalInMinutes * 60000);
+        private ErrorRepository _errorRepository = new ErrorRepository();
+
         public ReportService()
         {
             InitializeComponent(); 
@@ -22,6 +17,24 @@ namespace ReportService
 
         protected override void OnStart(string[] args)
         {
+            _timer.Elapsed += DoWork;
+            _timer.Start();
+        }
+
+        private void DoWork(object sender, ElapsedEventArgs e)
+        {
+            SendError();
+            SendReport();
+        }
+
+        private void SendError()
+        {
+
+        }
+
+        private void SendReport()
+        {
+            var errors = _errorRepository.GetLasErrors(IntervalInMinutes);
         }
 
         protected override void OnStop()
