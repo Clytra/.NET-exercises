@@ -44,5 +44,11 @@ namespace ReportService.Repositories
                 }
             };
         }
+
+        public void ReportSend(Report report)
+        {
+            report.IsSend = true;
+            // zapis w bazie danych
+        }
     }
 }
