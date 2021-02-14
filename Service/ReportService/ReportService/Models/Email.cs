@@ -1,7 +1,10 @@
 ﻿using ReportService.Extensions;
+using System.ComponentModel;
+using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ReportService.Models
 {
@@ -27,7 +30,7 @@ namespace ReportService.Models
             _senderName = emaiParams.SenderName;
         }
 
-        public void Send(string subject, string body, string to)
+        public async Task Send(string subject, string body, string to)
         {
             _mail = new MailMessage();
             _mail.From = new MailAddress(_senderEmail, _senderName);
@@ -39,6 +42,39 @@ namespace ReportService.Models
 
             _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body.StripHTML(),
                 null, MediaTypeNames.Text.Plain));
+
+            _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString($@"
+            <html>
+                <head>
+                </head>
+                <body>
+                    <div style='font-size: 16px padding: 10px; font-family: Arial; line-height: 1.4;'>
+                        {body}
+                    </div>
+                </body>
+            </html>
+            ",
+                null, MediaTypeNames.Text.Html));
+
+            _smtp = new SmtpClient
+            {
+                Host = _hostSmtp,
+                EnableSsl = _enableSsl,
+                Port = _port,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(_senderEmail, _senderEmailPassword)
+            };
+
+            _smtp.SendCompleted += OnSendCompleted;
+
+            await _smtp.SendMailAsync(_mail);
+        }
+
+        private void OnSendCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            _smtp.Dispose();
+            _mail.Dispose();
         }
     }
 }
