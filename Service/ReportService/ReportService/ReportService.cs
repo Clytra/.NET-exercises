@@ -3,6 +3,7 @@ using ReportService.Repositories;
 using System;
 using System.Linq;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace ReportService
@@ -16,6 +17,8 @@ namespace ReportService
         private ErrorRepository _errorRepository = new ErrorRepository();
         private ReportRepository _reportRepository = new ReportRepository();
         private Email _email;
+        private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
+        private string _emailReceiver = "przykładowymail@com";
 
         public ReportService()
         {
@@ -39,12 +42,12 @@ namespace ReportService
             Logger.Info("Service started...");
         }
 
-        private void DoWork(object sender, ElapsedEventArgs e)
+        private async void DoWork(object sender, ElapsedEventArgs e)
         {
             try
             {
-                SendError();
-                SendReport();
+                await SendError();
+                await SendReport();
             }
             catch (Exception ex)
             {
@@ -53,19 +56,20 @@ namespace ReportService
             }
         }
 
-        private void SendError()
+        private async Task SendError()
         {
             var errors = _errorRepository.GetLasErrors(IntervalInMinutes);
 
             if (errors == null || !errors.Any())
                 return;
 
-            //send email
+            await _email.Send("Błędy w aplikacji", _htmlEmail.GenerateErrors(errors, 
+                IntervalInMinutes), _emailReceiver);
 
             Logger.Info("Error sent.");
         }
 
-        private void SendReport()
+        private async Task SendReport()
         {
             var actualHour = DateTime.Now.Hour;
 
@@ -77,7 +81,8 @@ namespace ReportService
             if (report == null)
                 return;
 
-            //send email
+            await _email.Send("Raport dobowy", _htmlEmail.GenerateReport(report), _emailReceiver);
+
             _reportRepository.ReportSend(report);
 
             Logger.Info("Report sent.");
