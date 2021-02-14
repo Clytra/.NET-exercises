@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace ReportService.Extensions
+namespace EmailSender.Extensions
 {
     public static class StringExtensions
     {

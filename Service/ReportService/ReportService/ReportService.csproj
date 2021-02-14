@@ -90,5 +90,11 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmailSender\EmailSender.csproj">
+      <Project>{9a7cac0e-d1ae-4737-b266-b36365525b62}</Project>
+      <Name>EmailSender</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

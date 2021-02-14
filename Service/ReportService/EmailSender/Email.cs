@@ -1,4 +1,4 @@
-﻿using ReportService.Extensions;
+﻿using EmailSender.Extensions;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Mail;
@@ -6,7 +6,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReportService.Models
+namespace EmailSender
 {
     public class Email
     {

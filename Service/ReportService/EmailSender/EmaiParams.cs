@@ -1,4 +1,4 @@
-﻿namespace ReportService.Models
+﻿namespace EmailSender
 {
     public class EmailParams
     {
