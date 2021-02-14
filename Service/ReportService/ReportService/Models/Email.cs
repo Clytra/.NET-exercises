@@ -20,7 +20,7 @@ namespace ReportService.Models
         private string _senderEmailPassword;
         private string _senderName;
 
-        public Email(EmaiParams emaiParams)
+        public Email(EmailParams emaiParams)
         {
             _hostSmtp = emaiParams.HostSmtp;
             _enableSsl = emaiParams.EnableSsl;

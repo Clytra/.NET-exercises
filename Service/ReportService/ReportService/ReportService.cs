@@ -1,4 +1,5 @@
-﻿using ReportService.Repositories;
+﻿using ReportService.Models;
+using ReportService.Repositories;
 using System;
 using System.Linq;
 using System.ServiceProcess;
@@ -14,10 +15,21 @@ namespace ReportService
         private Timer _timer = new Timer(IntervalInMinutes * 60000);
         private ErrorRepository _errorRepository = new ErrorRepository();
         private ReportRepository _reportRepository = new ReportRepository();
+        private Email _email;
 
         public ReportService()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+
+            _email = new Email(new EmailParams
+            {
+                HostSmtp = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                SenderName = "Hohohiho",
+                SenderEmail = "",
+                SenderEmailPassword = ""
+            });
         }
 
         protected override void OnStart(string[] args)

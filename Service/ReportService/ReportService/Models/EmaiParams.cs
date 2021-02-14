@@ -1,6 +1,6 @@
 ﻿namespace ReportService.Models
 {
-    public class EmaiParams
+    public class EmailParams
     {
         public string HostSmtp { get; set; }
         public bool EnableSsl { get; set; }
