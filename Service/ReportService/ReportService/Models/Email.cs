@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using ReportService.Extensions;
+using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
 
@@ -36,7 +37,7 @@ namespace ReportService.Models
             _mail.BodyEncoding = Encoding.UTF8;
             _mail.SubjectEncoding = Encoding.UTF8;
 
-            _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body,
+            _mail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body.StripHTML(),
                 null, MediaTypeNames.Text.Plain));
         }
     }
