@@ -2,6 +2,7 @@
 using ReportService.Models;
 using ReportService.Repositories;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.ServiceProcess;
 using System.Threading.Tasks;
@@ -19,21 +20,31 @@ namespace ReportService
         private ReportRepository _reportRepository = new ReportRepository();
         private Email _email;
         private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
-        private string _emailReceiver = "przykładowymail@com";
+        private string _emailReceiver;
 
         public ReportService()
         {
             InitializeComponent();
 
-            _email = new Email(new EmailParams
+            try
             {
-                HostSmtp = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                SenderName = "Hohohiho",
-                SenderEmail = "",
-                SenderEmailPassword = ""
-            });
+                _emailReceiver = ConfigurationManager.AppSettings["ReceiverEmail"];
+
+                _email = new Email(new EmailParams
+                {
+                    HostSmtp = ConfigurationManager.AppSettings["HostSmtp"],
+                    Port = Convert.ToInt32(ConfigurationManager.AppSettings["Port"]),
+                    EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
+                    SenderName = ConfigurationManager.AppSettings["SenderName"],
+                    SenderEmail = ConfigurationManager.AppSettings["SenderEmail"],
+                    SenderEmailPassword = ConfigurationManager.AppSettings["SenderEmailPassword"]
+                });
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, ex.Message);
+                throw new Exception(ex.Message);
+            }
         }
 
         protected override void OnStart(string[] args)
