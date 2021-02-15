@@ -15,7 +15,7 @@ namespace ReportService
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         private const int SendHour = 8;
-        private const int IntervalInMinutes = 30;
+        private const int IntervalInMinutes = 1;
         private Timer _timer = new Timer(IntervalInMinutes * 60000);
         private ErrorRepository _errorRepository = new ErrorRepository();
         private ReportRepository _reportRepository = new ReportRepository();
@@ -23,6 +23,7 @@ namespace ReportService
         private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
         private string _emailReceiver;
         private StringCipher _stringCipher = new StringCipher("CCBE3D9E-5F26-46E5-9C1F-7B27C6E040FF");
+        private const string _nonEncryptedPasswordPrefix = "encrypt:";
 
         public ReportService()
         {
@@ -54,9 +55,9 @@ namespace ReportService
         {
             var encryptedPassword = ConfigurationManager.AppSettings["SenderEmailPassword"];
 
-            if (encryptedPassword.StartsWith("encrypt:"))
+            if (encryptedPassword.StartsWith(_nonEncryptedPasswordPrefix))
             {
-                encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace("encrypt:", ""));
+                encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace(_nonEncryptedPasswordPrefix, ""));
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 configFile.AppSettings.Settings["SenderEmailPassword"].Value = encryptedPassword;
