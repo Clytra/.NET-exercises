@@ -39,15 +39,31 @@ namespace ReportService
                     EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
                     SenderName = ConfigurationManager.AppSettings["SenderName"],
                     SenderEmail = ConfigurationManager.AppSettings["SenderEmail"],
-                    SenderEmailPassword = _stringCipher.Decrypt(ConfigurationManager.AppSettings["SenderEmailPassword"])
+                    SenderEmailPassword = DecryptSenderEmailPassword()
 
-                }); ;
+                }); 
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, ex.Message);
                 throw new Exception(ex.Message);
             }
+        }
+
+        private string DecryptSenderEmailPassword()
+        {
+            var encryptedPassword = ConfigurationManager.AppSettings["SenderEmailPassword"];
+
+            if (encryptedPassword.StartsWith("encrypt:"))
+            {
+                encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace("encrypt:", ""));
+
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                configFile.AppSettings.Settings["SenderEmailPassword"].Value = encryptedPassword;
+                configFile.Save();
+            }
+
+            return _stringCipher.Decrypt(encryptedPassword);
         }
 
         protected override void OnStart(string[] args)
