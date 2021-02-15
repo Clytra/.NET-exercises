@@ -1,4 +1,5 @@
-﻿using EmailSender;
+﻿using Cipher;
+using EmailSender;
 using ReportService.Models;
 using ReportService.Repositories;
 using System;
@@ -21,6 +22,7 @@ namespace ReportService
         private Email _email;
         private GenerateHtmlEmail _htmlEmail = new GenerateHtmlEmail();
         private string _emailReceiver;
+        private StringCipher _stringCipher = new StringCipher("CCBE3D9E-5F26-46E5-9C1F-7B27C6E040FF");
 
         public ReportService()
         {
@@ -37,8 +39,9 @@ namespace ReportService
                     EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["EnableSsl"]),
                     SenderName = ConfigurationManager.AppSettings["SenderName"],
                     SenderEmail = ConfigurationManager.AppSettings["SenderEmail"],
-                    SenderEmailPassword = ConfigurationManager.AppSettings["SenderEmailPassword"]
-                });
+                    SenderEmailPassword = _stringCipher.Decrypt(ConfigurationManager.AppSettings["SenderEmailPassword"])
+
+                }); ;
             }
             catch (Exception ex)
             {

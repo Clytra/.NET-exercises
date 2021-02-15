@@ -59,7 +59,7 @@ namespace Cipher
             }
         }
 
-        public string Decrypt(string cipherText, string passPhrase)
+        public string Decrypt(string cipherText)
         {
             // Get the complete stream of bytes that represent:
             // [32 bytes of Salt] + [32 bytes of IV] + [n bytes of CipherText]
