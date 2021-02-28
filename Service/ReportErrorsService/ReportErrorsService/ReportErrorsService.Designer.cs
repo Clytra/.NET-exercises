@@ -1,7 +1,7 @@
 ﻿
 namespace ReportErrorsService
 {
-    partial class Service1
+    partial class ReportErrorsService
     {
         /// <summary> 
         /// Required designer variable.
