@@ -28,6 +28,6 @@ namespace InvoiceManager.Models.Domains
 
         public Address Address { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
-        public ApplicationUser Users { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

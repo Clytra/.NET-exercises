@@ -23,5 +23,22 @@ namespace InvoiceManager.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(x => x.Invoices)
+                .WithRequired(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(x => x.Clients)
+                .WithRequired(x => x.User)
+                .HasForeignKey(x => x.UserId)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
