@@ -22,6 +22,7 @@ namespace InvoiceManager.Models.Domains
         public DateTime PaymentDate { get; set; }
         public DateTime CreateDate { get; set; }
         public int ClientId { get; set; }
+        public string Comments { get; set; }
 
         [Required]
         [ForeignKey("User")]

@@ -14,7 +14,7 @@ namespace InvoiceManager.Controllers
             return View();
         }
 
-        public ActionResult Invoice()
+        public ActionResult Invoice(int id = 0)
         {
             return View();
         }
