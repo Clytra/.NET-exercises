@@ -14,6 +14,11 @@ namespace InvoiceManager.Controllers
             return View();
         }
 
+        public ActionResult Invoice()
+        {
+            return View();
+        }
+
         [AllowAnonymous]
         public ActionResult About()
         {
