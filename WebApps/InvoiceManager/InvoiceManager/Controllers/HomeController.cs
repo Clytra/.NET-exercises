@@ -51,6 +51,7 @@ namespace InvoiceManager.Controllers
                         {
                             new InvoicePosition
                             {
+                                Id = 1,
                                 Lp = 1,
                                 Product = new Product { Name = "Produkt" },
                                 Quantity = 2,
