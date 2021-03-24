@@ -64,7 +64,9 @@
                 <div class="form-group">
                     @Html.LabelFor(x => x.Invoice.Comments)
                     @Html.TextAreaFor(x => x.Invoice.Comments,
-                    new { @class = "form-control" })
+                    new { @class = "form-control",
+                        @id = "PaymentDate",
+                        autocomplete = "off" })
                 </div>
 
                 <button class="btn btn-primary btn-lg mb-5" type="submit">Zapisz</button>
@@ -88,6 +90,18 @@
         {
 
         }
+
+        $(document).ready(function () {
+
+            $('#PaymentDate').datepicker({
+                format: "dd-mm-yyyy",
+                language: "pl",
+                nultidate: false,
+                autoclose: true,
+                todayHiglight: true,
+                forceParse: false
+            });
+        })
     </script>
 }
 
