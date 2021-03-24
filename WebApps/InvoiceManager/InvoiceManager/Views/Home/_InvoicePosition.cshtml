@@ -18,9 +18,9 @@
             {
                 <tr>
                     <td>
-                        <a class="font-weight-bold" href='window.location.href=@Url.Action("InvoicePosition", "Home",
+                        <a class="font-weight-bold" href="@Url.Action("InvoicePosition", "Home",
                                                  new { invoiceId = position.InvoiceId,
-                                                 invoicePositionId = position.Id})"'>@position.Lp</a>
+                                                 invoicePositionId = position.Id})">@position.Lp</a>
                                             </td>
                                             <td>@position.Product.Name</td>
                                             <td>@position.Quantity</td>
