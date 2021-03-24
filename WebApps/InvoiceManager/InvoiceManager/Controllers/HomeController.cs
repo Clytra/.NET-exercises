@@ -71,6 +71,35 @@ namespace InvoiceManager.Controllers
             return View(model);
         }
 
+        public ActionResult InvoicePosition(int invoiceId, int invoicePositionId = 0)
+        {
+            EditInvoicePositionViewModel model = null;
+
+            if (invoicePositionId == 0)
+            {
+                model = new EditInvoicePositionViewModel
+                {
+                    InvoicePosition = new InvoicePosition(),
+                    Heading = "Dodawanie nowej pozycji",
+                    Products = new List<Product> { new Product { Id = 1, Name = "Produkt 1" } }
+                };
+            }
+            else
+            {
+                model = new EditInvoicePositionViewModel
+                {
+                    InvoicePosition = new InvoicePosition 
+                    { 
+                        Lp = 1, Value = 100, Quantity = 2, ProductId = 1
+                    },
+                    Heading = "Dodawanie nowej pozycji",
+                    Products = new List<Product> { new Product { Id = 1, Name = "Produkt 1" } }
+                };
+            }
+
+            return View(model);
+        }
+
         [AllowAnonymous]
         public ActionResult About()
         {
