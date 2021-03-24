@@ -92,6 +92,12 @@
 
         }
 
+        function deleteInvoicePosition() {
+
+            if (!confirm("Czy na pewno chcesz usunąć pozycję?"))
+                return;
+        }
+
         $(document).ready(function () {
 
             $('#PaymentDate').datepicker({
