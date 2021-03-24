@@ -26,7 +26,7 @@
             {
             <tr>
                 <td>
-                    <a href="@Url.Action("Invoice", "Home", new { id = invoice.Id })">@invoice.Title</a>
+                    <a class="font-weight-bold" href="@Url.Action("Invoice", "Home", new { id = invoice.Id })">@invoice.Title</a>
                 </td>
                 <td>@invoice.Client.Name</td>
                 <td>@invoice.Value zł</td>
@@ -52,7 +52,7 @@ else
     <script type="text/javascript">
         function deleteInvoice() {
 
-            if (!confirm("Czy na pewno chcesz usunąć fakturę"))
+            if (!confirm("Czy na pewno chcesz usunąć fakturę?"))
                 return;
         }
     </script>
